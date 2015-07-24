@@ -74,6 +74,10 @@ angular.module('angularfire2App')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
+      .when('/portfolioBasic', {
+        templateUrl: 'views/portfoliobasic.html',
+        controller: 'PortfoliobasicCtrl'
+      })
       .otherwise({redirectTo: '/'});
   }])
 
