@@ -42,40 +42,41 @@ $scope.orgs = gpOrgsManager.getOrgs();
 // 
 // Chart Info Setup
 // - flat
-$scope.givingChartInfo = new gpChartInterfaces.FlatChart.Info(
+$scope.chartInfo = new gpChartInterfaces.FlatChart.Info(
 	$scope.orgs, '$id', 'portion'
 );
 
 // Chart Config
 // - flat
-$scope.givingChartConfig = new gpHighcharts.GivingChart.Config(
-	$scope.givingChartInfo,
+$scope.chartConfig = new gpHighcharts.GivingChart.Config(
+	$scope.chartInfo,
 	$scope.orgs.selectOrg
 );
 
 
 // // Chart Setup
-$scope.givingChart = new Highcharts.Chart($scope.givingChartConfig);
+$scope.chart = new Highcharts.Chart($scope.givingChartConfig);
 
-$scope.givingChart.controls = new gpChartInterfaces.PieChart.Controls(
-	new gpHighCharts.PieChart.Controls();
+$scope.chart.controls = new gpChartInterfaces.Controls(
+	new gpHighCharts.Controls();
 ); /* $scope.givingChart.controls.bind($scope.givingChart); // <=maybe */
 
-// interfce
+
+$scope.$watch('orgs', refreshChart, true);
+// deep watch; http://stackoverflow.com/a/14713978
 
 
 
-$scope.$watch(
-	'orgs', 
-	function (newVal, oldVal) { 
-		$scope.givingChart.series[0].setData(
-			new gpChartInterfaces.FlatChartInfo(
-				$scope.orgs, '$id', 'portion'
-			);
+function refreshChart(newVal, oldVal){
+	// maybe this should be abstracted into gpHighcharts, like this?
+	// function($scope){
+	$scope.givingChart.series[0].setData(
+		new gpChartInterfaces.FlatChartInfo(
+			$scope.orgs, '$id', 'portion'
 		);
-	}, 
-	true // deep watch; http://stackoverflow.com/a/14713978
-);
+	);
+	// }
+}
 
 
 
@@ -182,7 +183,7 @@ ng-click="givingChart.deselectAll"
 
 / service: gpObjectUtils /
 
-function fetchFromObject(obj, selector) {
+function fetchFromObject(selector, obj, ) {
 
 	// null case
     if ( typeof obj === 'undefined' ) {
@@ -218,8 +219,21 @@ function fetchFromObject(obj, selector) {
 
 
 
-/ service: gpChartsConfigs /
+/ service: gpHighcharts /
 
+{
+
+}
 	lots of fun
 
 
+
+// controls: {
+// 	refresh: function (newVal, oldVal) { 
+// 		$scope.givingChart.series[0].setData(
+// 			new gpChartInterfaces.FlatChartInfo(
+// 				$scope.orgs, '$id', 'portion'
+// 			);
+// 		);
+// 	}, 
+// },
