@@ -8,17 +8,37 @@
  * Service in the angularfire2App.
  */
 angular.module('angularfire2App')
-  .service('gpOrgsManager', function () {
+  .service('gpOrgsManager', ['Ref', '$firebaseArray', function (Ref, $firebaseArray) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    this.getOrgs = function(){
+    this.getOrgs = function(saveToScopeOrgsThenInit){
     	
+    	// console.log($firebaseArray); // yup
     	var query = Ref.child('organizations').limitToLast(100);
-    	var orgsFbArray = $firebaseArray(query);
 
-    	orgsFbArray.$loaded(
-    		asOrgsCollection.bind(orgsFbArray) // if I don't mind letting my controller know about the service, I can just have the controller do the $loaded(asOrgsCollection) thing
-    	).error(alert);
+    	//https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-loaded
+		var orgs = $firebaseArray(query);
+		orgs.$loaded()
+		  .then(function(loadedOrgs) {
+		    if (loadedOrgs === orgs ){
+		    	saveToScopeOrgsThenInit(orgs);
+		    }
+		  })
+		  .catch(function(error) {
+		    console.log("Error:", error);
+		  });
+
+    	// orgsFbArray.$loaded().catch(function(err) { console.error(err); });
+    	
+    	// not even sure I need that ..
+    	// 
+    	// 
+  //   	orgsFbArray.$loaded( // $   // $loaded() 	Returns a promise which resolves after the initial records have been downloaded from our database. This is only called once and should be used with care. See Extending the Services for more ways to hook into server events. 
+  //   		asOrgsCollection.bind(orgsFbArray) // if I don't mind letting my controller know about the service, I can just have the controller do the $loaded(asOrgsCollection) thing
+  //   	).catch(function(err) {
+		//    console.error(err);
+		// });
+		
 
     };
 
@@ -73,4 +93,4 @@ angular.module('angularfire2App')
 
 	}
 
-  });
+  }]);

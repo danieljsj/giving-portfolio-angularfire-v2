@@ -15,12 +15,19 @@ angular.module('angularfire2App')
   	// the controller knows that we are using highcharts, but except for a brief exception - ".series[0].setData(...)" (in refreshChart), does not know how highcharts works.
     // the controller knows that we're using angularfire, and knows how it works. ($loaded, $watch)... ... gpOrgsManager also knows we're using angularfire; that's it's whole thing.
 
-    $scope.orgs = gpOrgsManager.getOrgs();
-	
 
-	$scope.orgs.$loaded(function(){
-		setTimeout(init,0); // re-queue the init so the init in gpOrgsManager can finish first? // hackish, something better should solve this...
-	}).catch(alert);
+    function saveToScopeOrgsThenInit(orgs){
+    	$scope.orgs = orgs;
+    	init();
+    }
+
+    gpOrgsManager.getOrgs(saveToScopeOrgsThenInit);
+	
+	// $scope.orgs.$loaded(function(){
+	// 	setTimeout(init,0); // re-queue the init so the init in gpOrgsManager can finish first? // hackish, something better should solve this...
+	// }).catch(alert);
+	// loaded only fires once... complicated but perhaps worthwhile to figure out how to wait / async. ... I really have to wonder what's happening when... or is it blocking?
+	
 
 	function init(){
 			// Chart Info Setup
