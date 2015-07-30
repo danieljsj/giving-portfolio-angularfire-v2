@@ -48,7 +48,7 @@ angular.module('angularfire2App')
 			// ); /* $scope.givingChart.controls.bind($scope.givingChart); // <=maybe */
 
 			// Chart Updates
-			$scope.$watch('orgs', pushOrgsChanges, true); // deep watch; http://stackoverflow.com/a/14713978
+			// $scope.$watch('orgs', pushOrgsChanges, true); // deep watch; http://stackoverflow.com/a/14713978
 	}
 
 	function getGivingChartInfo(){
