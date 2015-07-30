@@ -1,1 +1,52 @@
-<p>This is the portfolioBasic view.</p>
+<highchart id="giving-chart" config="chartConfig"></highchart>
+
+<div id="org-list">
+	<div class="org">
+		<button class="delete" ng-click="orgs.$remove(selectedOrg);">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+		<input type="text" class="name" ng-model="selectedOrg.name" ng-change="orgs.$save(selectedOrg)"></input>
+		<button class="decrease" ng-click="incrementOrgPortion(selectedOrg,-5);">
+			<span></span>
+			<span></span>
+		</button>
+		<button class="decrease" ng-click="incrementOrgPortion(selectedOrg,-1);">
+			&nbsp;<span></span>&nbsp;
+		</button>
+		<input class="portion" type="number" ng-model="selectedOrg.portion" ng-change="orgs.$save(selectedOrg)"></button>
+		<button class="increase" ng-click="incrementOrgPortion(selectedOrg,1);">
+			&nbsp;<span></span>&nbsp;
+		</button>
+		<button class="increase" ng-click="incrementOrgPortion(selectedOrg,5);">
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+	<hr>
+	<div class="org" ng-repeat="org in orgs | filter:selectedOrgId:selectedOrgFilter">
+		<button class="delete" ng-click="orgs.$remove(org);">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+		<input type="text" class="name" ng-model="org.name" ng-change="orgs.$save(org)"></input>
+		<button class="decrease" ng-click="incrementOrgPortion(org,-5);">
+			<span></span>
+			<span></span>
+		</button>
+		<button class="decrease" ng-click="incrementOrgPortion(org,-1);">
+			&nbsp;<span></span>&nbsp;
+		</button>
+		<input class="portion" type="number" ng-model="org.portion" ng-change="orgs.$save(org)"></button>
+		<button class="increase" ng-click="incrementOrgPortion(org,1);">
+			&nbsp;<span></span>&nbsp;
+		</button>
+		<button class="increase" ng-click="incrementOrgPortion(org,5);">
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+</div>
+<div id="org-form">
+	<form>
+        <input type="submit" class="" ng-click="addOrganization();" value="+"></input>
+	</form>
+</div>
