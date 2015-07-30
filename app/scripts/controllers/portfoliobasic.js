@@ -48,7 +48,7 @@ angular.module('angularfire2App')
 			// ); /* $scope.givingChart.controls.bind($scope.givingChart); // <=maybe */
 
 			// Chart Updates
-			// $scope.$watch('orgs', pushOrgsChanges, true); // deep watch; http://stackoverflow.com/a/14713978
+			$scope.$watch('orgs', pushOrgsChanges, true); // deep watch; http://stackoverflow.com/a/14713978
 	}
 
 	function getGivingChartInfo(){
@@ -59,7 +59,11 @@ angular.module('angularfire2App')
 
 	function pushOrgsChanges(newOrgs, oldOrgs){
 
-		$scope.givingChart.series[0].setData(getGivingChartInfo());
+		console.log(newOrgs);
+
+		// $scope.givingChart.series[0].setData(getGivingChartInfo());
+		$scope.givingChart.series[0].setData(TODO_MUST_ACTUALLY_MAKE_THE_DATA_VIA_PART_OF_gpHighchartsGivingChartgetConfig_NOT_JUST_SEND_THE_INFO
+			);
 
 		$scope.orgs.saveOrgsChanges(newOrgs, oldOrgs); // ... this is firing ... without me doing anything in the UI; why?
 

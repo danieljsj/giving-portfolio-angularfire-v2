@@ -43,9 +43,9 @@ angular.module('angularfire2App')
 		},
 		saveOrgsChanges: function(newOrgs, oldOrgs){ // this really needs to be in orgsmanager!
 			for (var i = newOrgs.length - 1; i >= 0; i--) {
-				if (! angular.equals( newOrgs[i], oldOrgs.getOrg( newOrgs[i].id ) ) ){
+				// if (! angular.equals( newOrgs[i], oldOrgs.getOrg( newOrgs[i].id ) ) ){
 					newOrgs.$save(newOrgs[i]);
-				}
+				// }
 			}
 		},
 		/// maybe this should be in gpHighcharts.controls?

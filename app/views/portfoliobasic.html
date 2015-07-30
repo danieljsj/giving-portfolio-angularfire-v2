@@ -6,18 +6,18 @@
 			<span class="glyphicon glyphicon-remove"></span>
 		</button>
 		<input type="text" class="name" ng-model="selectedOrg.name" ng-change="orgs.$save(selectedOrg)"></input>
-		<button class="decrease" ng-click="incrementOrgPortion(selectedOrg,-5);">
+		<button class="decrease" ng-click="orgs.incrementOrgPortion(selectedOrg,-5);">
 			<span></span>
 			<span></span>
 		</button>
-		<button class="decrease" ng-click="incrementOrgPortion(selectedOrg,-1);">
+		<button class="decrease" ng-click="orgs.incrementOrgPortion(selectedOrg,-1);">
 			&nbsp;<span></span>&nbsp;
 		</button>
 		<input class="portion" type="number" ng-model="selectedOrg.portion" ng-change="orgs.$save(selectedOrg)"></button>
-		<button class="increase" ng-click="incrementOrgPortion(selectedOrg,1);">
+		<button class="increase" ng-click="orgs.incrementOrgPortion(selectedOrg,1);">
 			&nbsp;<span></span>&nbsp;
 		</button>
-		<button class="increase" ng-click="incrementOrgPortion(selectedOrg,5);">
+		<button class="increase" ng-click="orgs.incrementOrgPortion(selectedOrg,5);">
 			<span></span>
 			<span></span>
 		</button>
@@ -28,18 +28,18 @@
 			<span class="glyphicon glyphicon-remove"></span>
 		</button>
 		<input type="text" class="name" ng-model="org.name" ng-change="orgs.$save(org)"></input>
-		<button class="decrease" ng-click="incrementOrgPortion(org,-5);">
+		<button class="decrease" ng-click="orgs.incrementOrgPortion(org,-5);">
 			<span></span>
 			<span></span>
 		</button>
-		<button class="decrease" ng-click="incrementOrgPortion(org,-1);">
+		<button class="decrease" ng-click="orgs.incrementOrgPortion(org,-1);">
 			&nbsp;<span></span>&nbsp;
 		</button>
 		<input class="portion" type="number" ng-model="org.portion" ng-change="orgs.$save(org)"></button>
-		<button class="increase" ng-click="incrementOrgPortion(org,1);">
+		<button class="increase" ng-click="orgs.incrementOrgPortion(org,1);">
 			&nbsp;<span></span>&nbsp;
 		</button>
-		<button class="increase" ng-click="incrementOrgPortion(org,5);">
+		<button class="increase" ng-click="orgs.incrementOrgPortion(org,5);">
 			<span></span>
 			<span></span>
 		</button>
