@@ -85,7 +85,6 @@ angular.module('angularfire2App')
     				name: 	U.fetchFromObject( chartInfo.nameSelector	, chartInfo.points[i] ) // TODO!  // NOTE TO ME: THIS IS WAY THE POOP TOO MUCH WORK JUST TO GET FIREBASE NOT TO SAVE THE SELECTED AND SLICED VALUE, AM I RIGHT?! I MEAN, IT'S KINDA NICE TO HAVE DATA FLOW ONLY ONE WAY, AND THE CHART CAN'T MANIPULATE THE ORIGINAL DATA... BUT... SHEESH! NOT SURE THIS IS WORTH IT!
     			});
     		}
-    		console.log(this);
     		return givingChartHiddens
     			.configTemplateMerge(copiedData, externalSelectOrg);
     	},

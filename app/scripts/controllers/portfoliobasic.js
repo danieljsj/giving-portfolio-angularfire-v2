@@ -59,9 +59,9 @@ angular.module('angularfire2App')
 
 	function pushOrgsChanges(newOrgs, oldOrgs){
 
-		$scope.givingChart.series[0].setData(getOrgsChartInfo());
+		$scope.givingChart.series[0].setData(getGivingChartInfo());
 
-		gpOrgsManager.saveOrgsChanges(newOrgs, oldOrgs);
+		$scope.orgs.saveOrgsChanges(newOrgs, oldOrgs); // ... this is firing ... without me doing anything in the UI; why?
 
 	}
 

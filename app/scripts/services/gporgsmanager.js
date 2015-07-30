@@ -11,6 +11,7 @@ angular.module('angularfire2App')
   .service('gpOrgsManager', ['Ref', '$firebaseArray', function (Ref, $firebaseArray) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
+
     this.getOrgs = function(saveToScopeOrgsThenInit){
     	
     	// console.log($firebaseArray); // yup
@@ -21,12 +22,14 @@ angular.module('angularfire2App')
 		orgs.$loaded()
 		  .then(function(loadedOrgs) {
 		    if (loadedOrgs === orgs ){
+		    	angular.extend(orgs,OrgsCollectionFuncs);
 		    	saveToScopeOrgsThenInit(orgs);
 		    }
 		  })
 		  .catch(function(error) {
 		    console.log("Error:", error);
 		  });
+		}
 
     	// orgsFbArray.$loaded().catch(function(err) { console.error(err); });
     	
@@ -38,15 +41,8 @@ angular.module('angularfire2App')
   //   	).catch(function(err) {
 		//    console.error(err);
 		// });
-		
-
-    };
-
-    function asOrgsCollection(obj) {
-    	angular.extend(obj,OrgsCollection);
-    }
     
-	var OrgsCollection = {
+	var OrgsCollectionFuncs = {
 
 		newOrgAtts: {portion:0},
 
@@ -89,8 +85,8 @@ angular.module('angularfire2App')
 				};
 			};
 		}
-		// , highchartShiftSelection: function(shift){
-
+		// , highchartShiftSelection: function(shift){}
 	}
+
 
   }]);
