@@ -11,27 +11,15 @@ angular.module('angularfire2App')
   .service('gpHighcharts', ['gpObjectUtils', function (gpObjectUtils) {
 
   	var U = gpObjectUtils;
+	
+	var categorizedGivingChartHiddens = { // really this should probably be its own service or something
+		configTemplateMerge: function(copiedData, externalSelectPointById) {}
+	}
 
-    this.GivingChart = {
-
-    	getConfig: function(chartInfo, externalSelectOrg){
-
-    		var copiedData = [];
-
-    		for (var i = 0; i < chartInfo.points.length; i++) {
-    			copiedData.push({
-    				id: 	U.fetchFromObject( chartInfo.idSelector		, chartInfo.points[i] ),
-    				y: 		U.fetchFromObject( chartInfo.valueSelector	, chartInfo.points[i] ), 
-    				name: 	U.fetchFromObject( chartInfo.nameSelector	, chartInfo.points[i] ) // TODO!  // NOTE TO ME: THIS IS WAY THE POOP TOO MUCH WORK JUST TO GET FIREBASE NOT TO SAVE THE SELECTED AND SLICED VALUE, AM I RIGHT?! I MEAN, IT'S KINDA NICE TO HAVE DATA FLOW ONLY ONE WAY, AND THE CHART CAN'T MANIPULATE THE ORIGINAL DATA... BUT... SHEESH! NOT SURE THIS IS WORTH IT!
-    			});
-    		}
-    		console.log(this);
-    		return this.configTemplateMerge(copiedData, externalSelectOrg);
-    	},
-
-    	configTemplateMerge: function(copiedData, externalSelectPointById) {
-    		// we say 'ById' here because (external)id is all that the highchart will know. The main func can select by obj. identity, but highcharts doesn't know/care.
-    		return {
+	var givingChartHiddens = {
+		configTemplateMerge: function(copiedData, externalSelectPointById) {
+		// we say 'ById' here because (external)id is all that the highchart will know. The main func can select by obj. identity, but highcharts doesn't know/care.
+			return {
 				chart: {
 					renderTo: 'giving-chart',
 					type: 'pie'
@@ -79,13 +67,33 @@ angular.module('angularfire2App')
 				},
 				loading: false,
 				size: {}
+			};
+		}
+	};
+
+
+    this.GivingChart = {
+
+    	getConfig: function(chartInfo, externalSelectOrg){
+
+    		var copiedData = [];
+
+    		for (var i = 0; i < chartInfo.points.length; i++) {
+    			copiedData.push({
+    				id: 	U.fetchFromObject( chartInfo.idSelector		, chartInfo.points[i] ),
+    				y: 		U.fetchFromObject( chartInfo.valueSelector	, chartInfo.points[i] ), 
+    				name: 	U.fetchFromObject( chartInfo.nameSelector	, chartInfo.points[i] ) // TODO!  // NOTE TO ME: THIS IS WAY THE POOP TOO MUCH WORK JUST TO GET FIREBASE NOT TO SAVE THE SELECTED AND SLICED VALUE, AM I RIGHT?! I MEAN, IT'S KINDA NICE TO HAVE DATA FLOW ONLY ONE WAY, AND THE CHART CAN'T MANIPULATE THE ORIGINAL DATA... BUT... SHEESH! NOT SURE THIS IS WORTH IT!
+    			});
     		}
-		},
+    		console.log(this);
+    		return givingChartHiddens
+    			.configTemplateMerge(copiedData, externalSelectOrg);
+    	},
+
     }
 
     this.CategorizedGivingChart = {
     	Config: function(){},
-    	configTemplateMerge: function(copiedData, externalSelectPointById){}
     }
     // AngularJS will instantiate a singleton by calling "new" on this function
   }]);
