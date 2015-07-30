@@ -9,7 +9,7 @@
  */
 
 angular.module('angularfire2App')
-  .controller('PortfoliobasicCtrl', function ($scope, gpOrgsManager, gpChartInterfaces, gpHighcharts, Highcharts) {
+  .controller('PortfoliobasicCtrl', function ($scope, gpOrgsManager, gpChartInterfaces, gpHighcharts) {
 
   	// note - the controller is angular and knows we are using angular, and knows how angular works.
   	// the controller knows that we are using highcharts, but except for a brief exception - ".series[0].setData(...)" (in refreshChart), does not know how highcharts works.
@@ -47,7 +47,7 @@ angular.module('angularfire2App')
 	function getGivingChartInfo(){
 		return new gpChartInterfaces.FlatChart.Info(
 			$scope.orgs, '$id', 'portion', 'name'
-		);
+		);0
 	}
 
 	function pushOrgsChanges(newOrgs, oldOrgs){
