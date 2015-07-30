@@ -38,40 +38,37 @@
 
 $scope.orgs = gpOrgsManager.getOrgs();
 
+// FLAT:
+// 
 // Chart Info Setup
 // - flat
-var givingChartInfo = new gpChartInterfaces.FlatChartInfo(
+$scope.givingChartInfo = new gpChartInterfaces.FlatChart.Info(
 	$scope.orgs, '$id', 'portion'
 );
-// - taxonomized
-var currentTaxonomy = 'locality';
-var categorizedGivingChartInfo = new gpChartInterfaces.CategorizedChartInfo(
-	$scope.orgs, '$id', 'portion', 'categorizations.'+currentTaxonomy
-);
 
-// Chart Config Setup
+// Chart Config
 // - flat
-var givingChartConfig = new gpChartsConfigs.GivingChartConfig(
-	givingChartInfo,
-	$scope.orgs.selectOrg
-);
-// - taxonomized
-var categorizedGivingChartConfig = new gpChartsConfigs.CategorizedGivingChartConfig(
-	categorizedGivingChartInfo,
+$scope.givingChartConfig = new gpHighcharts.GivingChart.Config(
+	$scope.givingChartInfo,
 	$scope.orgs.selectOrg
 );
 
-// Chart Setup
-// - flat
-var givingChart = new Highcharts.Chart(givingChartConfig);
-// - taxonomized
-var categorizedGivingChart = new Highcharts.Chart(categorizedGivingChartConfig);
+
+// // Chart Setup
+$scope.givingChart = new Highcharts.Chart($scope.givingChartConfig);
+
+$scope.givingChart.controls = new gpChartInterfaces.PieChart.Controls(
+	new gpHighCharts.PieChart.Controls();
+); /* $scope.givingChart.controls.bind($scope.givingChart); // <=maybe */
+
+// interfce
+
 
 
 $scope.$watch(
 	'orgs', 
 	function (newVal, oldVal) { 
-		givingChart.series[0].setData(
+		$scope.givingChart.series[0].setData(
 			new gpChartInterfaces.FlatChartInfo(
 				$scope.orgs, '$id', 'portion'
 			);
@@ -81,6 +78,23 @@ $scope.$watch(
 );
 
 
+
+// // TAXONOMIZED:
+// 
+// // Chart Info Setup
+// $scope.currentTaxonomy = 'locality';
+// $scope.categorizedGivingChartInfo = new gpChartInterfaces.CategorizedChartInfo(
+// 	$scope.orgs, '$id', 'portion', 'categorizations.'+$scope.currentTaxonomy
+// );
+// // Chart Config Setup
+// $scope.categorizedGivingChartConfig = new gpHighcharts.CategorizedGivingChart(
+// 	$scope.categorizedGivingChartInfo,
+// 	$scope.orgs.selectOrg
+// );
+// // Chart Setup
+// $scope.categorizedGivingChart = new Highcharts.Chart($scope.categorizedGivingChartConfig);
+
+// will neede something for deselect / deselect all... 
 
 / service:  gpOrgsManager /
 
@@ -131,23 +145,38 @@ so the gpOrgsManager needs to strap all that good stuff on... WAIT... when!?
 
 / service: gpChartInterfaces /
 
-interfaces: 
-
-FlatChartInfo
-	accepts:
+FlatChartInfo:
+	accepts, saves, returns ob with:
 		points
 		valueSelectorString
 		idSelectorString
 
 CategorizedChartInfo
-	accepts:
+	accepts, saves, returns ob with:
 		points
 		valueSelectorString
 		idSelectorString
 		categorySelectorString
 
 
+highchartDeselectAllPoints: function(){
+	for (var i = this.series.length - 1; i >= 0; i--) {
+		for (var j = this.series[i].length - 1; j >= 0; j--) {
+			this.series[i].data[j].select(false); // if the this's arent being the givingChart, we can do a .bind(givingChart)
+		};
+	};
+},
+// highchartShiftSelection: function(shift){
 
+// }
+
+
+
+var deselectChartPoints;
+
+$scope.givingChart.deselectAll = gpChartInterfaces.highchartDeselectAllPoints;
+
+ng-click="givingChart.deselectAll"
 
 
 
