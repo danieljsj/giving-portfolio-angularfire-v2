@@ -34,7 +34,7 @@ angular.module('angularfire2App')
 			$scope.givingChartInfo = getGivingChartInfo();
 
 			// Chart Config
-			$scope.givingChartConfig = new gpHighcharts.GivingChart.Config(
+			$scope.givingChartConfig = gpHighcharts.GivingChart.getConfig(
 				$scope.givingChartInfo,
 				$scope.orgs.selectOrg
 			);
