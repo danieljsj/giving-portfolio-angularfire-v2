@@ -95,8 +95,15 @@ button.delete {
 }
 
 #giving-chart {
-	tspan:last-child {
-		text-decoration:overline;
+	.highcharts-data-labels {
+		tspan:last-child {
+
+			text-decoration: overline;
+			/* text-overline-width: thick; */ /* nope... not supported in any browsers... https://docs.webplatform.org/wiki/css/properties/text-overline-width */
+
+			/* border-top:2px solid white; */ /* nope... doesn't work in SVGs */
+
+		}
 	}
 }
 
