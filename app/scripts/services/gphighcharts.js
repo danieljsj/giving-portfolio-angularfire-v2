@@ -28,9 +28,11 @@ angular.module('angularfire2App')
 							enabled: true,
 							distance: -30,
 							color: 'white',
-							format: '<b>{point.name}</b>:<br/>{point.percentage:.1f} %',
+							// align: 'center', // nope; this is not text-align, it's alignment relative to the point.
+							format: '<b>{point.name}</b><br/>{point.percentage:.1f} %',
 							style: {
 								// color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								// textAlign: "center" // nope; looks like it only accepts a few different params, and this ain't one. i'll try actual css.
 							}
 						},
 						center: ["50%","50%"],
@@ -38,7 +40,7 @@ angular.module('angularfire2App')
 					}
 				},
 				tooltip: {
-					pointFormat: '{series.name}:<br/><b>{point.y}</b> parts<br/><b>{point.percentage:.1f}%</b> of giving.'
+					pointFormat: '<h5 fail>{series.name}:</h5><br/><b>{point.y}</b> parts<br/><b>{point.percentage:.1f}%</percentage></b> of giving.'
 				},
 				series: [
 					{
