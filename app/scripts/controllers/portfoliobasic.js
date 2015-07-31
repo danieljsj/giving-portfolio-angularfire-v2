@@ -34,7 +34,7 @@ angular.module('angularfire2App')
 			$scope.givingChartInfo = getGivingChartInfo();
 
 			// Chart Config
-			$scope.givingChartConfig = gpHighcharts.GivingChart.getConfig(
+			$scope.givingChartConfig = gpHighcharts.GivingChart.getHcConfig(
 				$scope.givingChartInfo,
 				$scope.orgs.selectOrg
 			);
@@ -62,8 +62,9 @@ angular.module('angularfire2App')
 		console.log(newOrgs);
 
 		// $scope.givingChart.series[0].setData(getGivingChartInfo());
-		$scope.givingChart.series[0].setData(TODO_MUST_ACTUALLY_MAKE_THE_DATA_VIA_PART_OF_gpHighchartsGivingChartgetConfig_NOT_JUST_SEND_THE_INFO
-			);
+		$scope.givingChart.series[0].setData(
+			gpHighcharts.GivingChart.getHcData( getGivingChartInfo() )
+		);
 
 		$scope.orgs.saveOrgsChanges(newOrgs, oldOrgs); // ... this is firing ... without me doing anything in the UI; why?
 

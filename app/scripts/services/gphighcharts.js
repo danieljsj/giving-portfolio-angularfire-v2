@@ -11,10 +11,6 @@ angular.module('angularfire2App')
   .service('gpHighcharts', ['gpObjectUtils', function (gpObjectUtils) {
 
   	var U = gpObjectUtils;
-	
-	var categorizedGivingChartHiddens = { // really this should probably be its own service or something
-		configTemplateMerge: function(copiedData, externalSelectPointById) {}
-	}
 
 	var givingChartHiddens = {
 		configTemplateMerge: function(copiedData, externalSelectPointById) {
@@ -71,23 +67,30 @@ angular.module('angularfire2App')
 		}
 	};
 
+	
+	var categorizedGivingChartHiddens = { // really this should probably be its own service or something
+		configTemplateMerge: function(copiedData, externalSelectPointById) {}
+	}
 
     this.GivingChart = {
 
-    	getConfig: function(chartInfo, externalSelectOrg){
+    	getHcConfig: function(chartInfo, externalSelectOrg){
 
-    		var copiedData = [];
-
-    		for (var i = 0; i < chartInfo.points.length; i++) {
-    			copiedData.push({
-    				id: 	U.fetchFromObject( chartInfo.idSelector		, chartInfo.points[i] ),
-    				y: 		U.fetchFromObject( chartInfo.valueSelector	, chartInfo.points[i] ), 
-    				name: 	U.fetchFromObject( chartInfo.nameSelector	, chartInfo.points[i] ) // TODO!  // NOTE TO ME: THIS IS WAY THE POOP TOO MUCH WORK JUST TO GET FIREBASE NOT TO SAVE THE SELECTED AND SLICED VALUE, AM I RIGHT?! I MEAN, IT'S KINDA NICE TO HAVE DATA FLOW ONLY ONE WAY, AND THE CHART CAN'T MANIPULATE THE ORIGINAL DATA... BUT... SHEESH! NOT SURE THIS IS WORTH IT!
-    			});
-    		}
+    		// note: better to use return array.map(fn(point) ... return)
+    		var hcSeriesData = this.getHcData(chartInfo);
+    		
     		return givingChartHiddens
-    			.configTemplateMerge(copiedData, externalSelectOrg);
+    			.configTemplateMerge(hcSeriesData, externalSelectOrg);
     	},
+    	getHcData: function(chartInfo){
+    		return chartInfo.points.map(function(point){
+    			return {
+    				id: 	U.fetchFromObject( chartInfo.idSelector		, point ),
+    				y: 		U.fetchFromObject( chartInfo.valueSelector	, point ), 
+    				name: 	U.fetchFromObject( chartInfo.nameSelector	, point )
+    			}
+    		})
+    	}
 
     }
 
