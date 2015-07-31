@@ -28,11 +28,18 @@ angular.module('angularfire2App')
 			// TODO: if id, loop and return one with matching id. if org-esque ob, return it
 			if ('string' == typeof(orgOrId)){
 				for (var i = this.length - 1; i >= 0; i--) { // POSSIBLE PROBLEM: IT'S POSSIBLE THAT THE
-					this[i]
+					if(orgOrId == this[i].$id){
+						return this[i];
+					}
 				};
 			}
+			if ('object' == typeof(orgOrId)){
+				throw Error("error: getOrg does not yet support finding an object by reference!");
+			}
+			throw Error("error: getOrg does not support the type of the incoming variable");
 		},
 		selectOrg: function(orgOrId){
+			alert(orgOrId)
 			console.log(this);
 			this.selectedOrg = this.getOrg(orgOrId);
 			// todo: what about when it's null?

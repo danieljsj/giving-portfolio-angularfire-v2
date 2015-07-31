@@ -2,28 +2,28 @@
 
 <div id="org-list">
 	<div class="org">
-		<button class="delete" ng-click="orgs.$remove(selectedOrg);">
+		<button class="delete" ng-click="orgs.$remove(orgs.selectedOrg);">
 			<span class="glyphicon glyphicon-remove"></span>
 		</button>
-		<input type="text" class="name" ng-model="selectedOrg.name" ng-change="orgs.$save(selectedOrg)"></input>
-		<button class="decrease" ng-click="orgs.incrementOrgPortion(selectedOrg,-5);">
+		<input type="text" class="name" ng-model="orgs.selectedOrg.name" ng-change="orgs.$save(orgs.selectedOrg)"></input>
+		<button class="decrease" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,-5);">
 			<span></span>
 			<span></span>
 		</button>
-		<button class="decrease" ng-click="orgs.incrementOrgPortion(selectedOrg,-1);">
+		<button class="decrease" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,-1);">
 			&nbsp;<span></span>&nbsp;
 		</button>
-		<input class="portion" type="number" ng-model="selectedOrg.portion" ng-change="orgs.$save(selectedOrg)"></button>
-		<button class="increase" ng-click="orgs.incrementOrgPortion(selectedOrg,1);">
+		<input class="portion" type="number" ng-model="orgs.selectedOrg.portion" ng-change="orgs.$save(orgs.selectedOrg)"></button>
+		<button class="increase" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,1);">
 			&nbsp;<span></span>&nbsp;
 		</button>
-		<button class="increase" ng-click="orgs.incrementOrgPortion(selectedOrg,5);">
+		<button class="increase" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,5);">
 			<span></span>
 			<span></span>
 		</button>
 	</div>
 	<hr>
-	<div class="org" ng-repeat="org in orgs | filter:selectedOrgId:selectedOrgFilter">
+	<div class="org" ng-repeat="org in orgs | filter:orgs.selectedOrgId:orgs.selectedOrgFilter"><!-- MAKE THE FILTER -->
 		<button class="delete" ng-click="orgs.$remove(org);">
 			<span class="glyphicon glyphicon-remove"></span>
 		</button>

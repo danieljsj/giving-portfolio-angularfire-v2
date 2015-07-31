@@ -49,7 +49,8 @@ angular.module('angularfire2App')
 									externalSelectPointById(this.id);
 								},
 								unselect: function(){
-									externalSelectPointById(false);
+									// externalSelectPointById(false); 
+									// nope; this is firing AFTER the selection event, unselecting whatever was newly selected!
 								}
 							}
 						}
