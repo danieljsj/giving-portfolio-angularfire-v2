@@ -39,13 +39,19 @@ angular.module('angularfire2App')
 			throw Error("error: getOrg does not support the type of the incoming variable");
 		},
 		selectOrg: function(orgOrId){
-			alert(orgOrId)
+			// alert(orgOrId);
 			console.log(this);
 			this.selectedOrg = this.getOrg(orgOrId);
 			// todo: what about when it's null?
+			
+			this.saveOrgsChanges(this); // todo: something better than this, but currently this is just a way to (hopefully) get it to show up in the selected slot asap.
 		},
 		incrementOrgPortion: function(org, delta){
+			// TODO: if ( 0 <= org.portion + delta ) {  
 			org.portion += delta;
+			// } else {
+			// 	alert("Giving for an organization cannot be less than 0!")
+			// }
 			// anything else? i don't think so, because our deep-watch will trigger an update for the chart. and yes, we even want the chart to update with each keystroke in the name field, because that allows the highchart slice names to update realtime.
 		},
 		saveOrgsChanges: function(newOrgs, oldOrgs){ // this really needs to be in orgsmanager!
