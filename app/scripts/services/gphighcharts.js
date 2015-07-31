@@ -35,8 +35,8 @@ angular.module('angularfire2App')
 								// textAlign: "center" // nope; looks like it only accepts a few different params, and this ain't one. i'll try actual css.
 							}
 						},
-						// center: ["50%","50%"],
-						// size: "100%"
+						center: ["50%","50%"],
+						size: "100%"
 					}
 				},
 				tooltip: {
@@ -107,65 +107,23 @@ angular.module('angularfire2App')
     
 
 
-    // TESTING:
-    
+    // figure out where to put this!!!
 
-    $(function () {
-    $('#testHC').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Browser market shares January, 2015 to May, 2015'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                }
-            }
-        },
-        series: [{
-            name: "Brands",
-            colorByPoint: true,
-            data: [{
-                name: "Microsoft Internet Explorer",
-                y: 56.33
-            }, {
-                name: "Chrome",
-                y: 24.03,
-                sliced: true,
-                selected: true
-            }, {
-                name: "Firefox",
-                y: 10.38
-            }, {
-                name: "Safari",
-                y: 4.77
-            }, {
-                name: "Opera",
-                y: 0.91
-            }, {
-                name: "Proprietary or Undetectable",
-                y: 0.2
-            }]
-        }]
-    });
-});
-    
+    function resizeHighchart() {
+	    
+	    var height = $(window).height();
+	    var width = $(window).width();
+	    var min = Math.min(height, width);
 
+	    var size = min;
+		var doAnimation = true;
+	    
+	    $("#giving-chart").highcharts().setSize(size, size, doAnimation);
+    }
+
+	$(window).resize(resizeHighchart);
+	$("#giving-chart").load(resizeHighchart);
+	
 
 
 
