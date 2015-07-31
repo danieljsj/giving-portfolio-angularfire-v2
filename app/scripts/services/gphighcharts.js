@@ -128,9 +128,6 @@ angular.module('angularfire2App')
     }
 
 	$(window).resize(resizeHighchart);
-	$("#giving-chart").load(function(){alert("giving-chart loaded");resizeHighchart()} );
-	$(window).resize(function(){alert("window resized");resizeHighchart()} );
-	
 
 
 
