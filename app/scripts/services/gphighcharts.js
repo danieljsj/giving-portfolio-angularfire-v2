@@ -61,7 +61,7 @@ angular.module('angularfire2App')
 					}
 				],
 				title: {
-					text: "My Giving Portfolio"
+					text: ""
 				},
 				credits: {
 					enabled: false

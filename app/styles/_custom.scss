@@ -99,6 +99,7 @@ button.delete {
 		tspan:last-child {
 
 			text-decoration: overline;
+			/*OR: use something like this: ______ in the template, then use some funcs to set the dy to 4. this gives a thicker line, with the svg drop-shadow, which, unlike overline, will show up in a downloaded svg. NOTE on SVG conversion: their exporter fails. have to use some other method to convert to PNG from the SVG they give, or that's sitting in the DOM.
 			/* text-overline-width: thick; */ /* nope... not supported in any browsers... https://docs.webplatform.org/wiki/css/properties/text-overline-width */
 
 			/* border-top:2px solid white; */ /* nope... doesn't work in SVGs */
