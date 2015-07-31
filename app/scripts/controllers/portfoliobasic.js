@@ -16,12 +16,16 @@ angular.module('angularfire2App')
     // the controller knows that we're using angularfire, and knows how it works. ($loaded, $watch)... ... gpOrgsManager also knows we're using angularfire; that's it's whole thing.
 
 
-    function saveToScopeOrgsThenInit(orgs){
+    function saveToScopeOrgsThenRunInit(orgs){
     	$scope.orgs = orgs;
     	init();
     }
 
-    gpOrgsManager.getOrgs(saveToScopeOrgsThenInit);
+    gpOrgsManager.getOrgs(
+    	saveToScopeOrgsThenRunInit
+    );
+
+
 	
 	// $scope.orgs.$loaded(function(){
 	// 	setTimeout(init,0); // re-queue the init so the init in gpOrgsManager can finish first? // hackish, something better should solve this...
