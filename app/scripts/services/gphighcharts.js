@@ -26,9 +26,11 @@ angular.module('angularfire2App')
 						cursor: 'pointer',
 						dataLabels: {
 							enabled: true,
-							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							distance: -30,
+							color: 'white',
+							format: '<b>{point.name}</b>:<br/>{point.percentage:.1f} %',
 							style: {
-								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								// color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 							}
 						},
 						center: ["50%","50%"],
@@ -36,7 +38,7 @@ angular.module('angularfire2App')
 					}
 				},
 				tooltip: {
-					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+					pointFormat: '{series.name}:<br/><b>{point.y}</b> parts<br/><b>{point.percentage:.1f}%</b> of giving.'
 				},
 				series: [
 					{
@@ -89,6 +91,7 @@ angular.module('angularfire2App')
     				id: 	U.fetchFromObject( chartInfo.idSelector		, point ),
     				y: 		U.fetchFromObject( chartInfo.valueSelector	, point ), 
     				name: 	U.fetchFromObject( chartInfo.nameSelector	, point )
+    					.replace(/\s+/g, "<br/>")
     			}
     		})
     	}
