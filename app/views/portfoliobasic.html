@@ -27,30 +27,10 @@
 	<div class="other" ng-if="!orgs.selectedOrg">
 		Please select an organization to modify
 	</div>
-	<!-- <div class="org" ng-repeat="org in orgs | filter:orgs.selectedOrgId:orgs.selectedOrgFilter">
-		<button class="delete" ng-click="orgs.$remove(org);">
-			<span class="glyphicon glyphicon-remove"></span>
-		</button>
-		<input type="text" class="name" ng-model="org.name" ng-change="orgs.$save(org)"></input>
-		<button class="decrease" ng-click="orgs.incrementOrgPortion(org,-5);">
-			<span></span>
-			<span></span>
-		</button>
-		<button class="decrease" ng-click="orgs.incrementOrgPortion(org,-1);">
-			&nbsp;<span></span>&nbsp;
-		</button>
-		<input class="portion" type="number" ng-model="org.portion" ng-change="orgs.$save(org)"></button>
-		<button class="increase" ng-click="orgs.incrementOrgPortion(org,1);">
-			&nbsp;<span></span>&nbsp;
-		</button>
-		<button class="increase" ng-click="orgs.incrementOrgPortion(org,5);">
-			<span></span>
-			<span></span>
-		</button>
-	</div> -->
-</div>
-<div id="org-form">
-	<form>
-        <input type="submit" class="" ng-click="addOrganization();" value="+"></input>
-	</form>
+	
+	<div id="org-form">
+		<form>
+	        <input type="submit" class="" ng-click="addOrganization();" value="+"></input>
+		</form>
+	</div>
 </div>
