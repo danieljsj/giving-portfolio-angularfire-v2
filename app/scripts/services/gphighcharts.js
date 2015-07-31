@@ -13,12 +13,16 @@ angular.module('angularfire2App')
   	var U = gpObjectUtils;
 
 	var givingChartHiddens = {
-		configTemplateMerge: function(copiedData, externalSelectPointById) {
+		configTemplateMerge: function(copiedData, externalSelectPointById, resize) {
 		// we say 'ById' here because (external)id is all that the highchart will know. The main func can select by obj. identity, but highcharts doesn't know/care.
 			return {
 				chart: {
 					renderTo: 'giving-chart',
-					type: 'pie'
+					type: 'pie',
+					backgroundColor: null,
+					events: {
+						load: resize
+					}
 				},
 				plotOptions: {
 					pie: {
@@ -38,6 +42,9 @@ angular.module('angularfire2App')
 						center: ["50%","50%"],
 						size: "100%"
 					}
+				},
+				exporting: {
+					enabled: false
 				},
 				tooltip: {
 					pointFormat: '<h5 fail>{series.name}:</h5><br/><b>{point.y}</b> parts<br/><b>{point.percentage:.1f}%</percentage></b> of giving.'
@@ -85,7 +92,7 @@ angular.module('angularfire2App')
     		var hcSeriesData = this.getHcData(chartInfo);
     		
     		return givingChartHiddens
-    			.configTemplateMerge(hcSeriesData, externalSelectOrg);
+    			.configTemplateMerge(hcSeriesData, externalSelectOrg, resizeHighchart);
     	},
     	getHcData: function(chartInfo){
     		return chartInfo.points.map(function(point){
@@ -110,19 +117,19 @@ angular.module('angularfire2App')
     // figure out where to put this!!!
 
     function resizeHighchart() {
-	    
-	    var height = $(window).height();
-	    var width = $(window).width();
-	    var min = Math.min(height, width);
 
-	    var size = min;
-		var doAnimation = true;
+    	var chart = $("#giving-chart");
 	    
-	    $("#giving-chart").highcharts().setSize(size, size, doAnimation);
+	    var width = chart.parent().width();
+	    var height = width;
+		var doAnimation = false;
+	    
+	    chart.highcharts().setSize(height, width, doAnimation);
     }
 
 	$(window).resize(resizeHighchart);
-	$("#giving-chart").load(resizeHighchart);
+	$("#giving-chart").load(function(){alert("giving-chart loaded");resizeHighchart()} );
+	$(window).resize(function(){alert("window resized");resizeHighchart()} );
 	
 
 

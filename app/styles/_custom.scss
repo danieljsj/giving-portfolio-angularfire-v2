@@ -4,9 +4,28 @@
 /* General */
 html { 
 	overflow-y:scroll; 
+	overflow-x:hidden;
 }
 body { 
 	/* padding-top:50px; */
+	/*background-image: radial-gradient(16px at 60px 50% , #000000 0%, #000000 14px, rgba(0, 0, 0, 0.3) 18px, rgba(0, 0, 0, 0) 19px);*/
+	/*http://www.cssmatic.com/gradient-generator#'\-moz\-radial\-gradient\%28center\%2C\%20ellipse\%20cover\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%200\%25\%2C\%20rgba\%2889\%2C111\%2C148\%2C1\%29\%20100\%25\%29\%3B'*/
+/*	background-color: rgba(255,255,255,1);
+	background: @include filter-gradient(#ffffff, #596f94, horizontal);
+	background: @include background-image(radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(89,111,148,1) 100%));*/
+
+	background: rgba(255,255,255,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(89,111,148,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(89,111,148,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(89,111,148,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(89,111,148,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(89,111,148,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(89,111,148,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#596f94', GradientType=1 );
+
+	// later: put gradient on pie too: http://www.highcharts.com/demo/pie-gradient;
+
+	background-attachment: fixed;
 }
 * {
 	vertical-align: middle; 
