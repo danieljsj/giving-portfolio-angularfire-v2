@@ -54,6 +54,13 @@ angular.module('angularfire2App')
 			// }
 			// anything else? i don't think so, because our deep-watch will trigger an update for the chart. and yes, we even want the chart to update with each keystroke in the name field, because that allows the highchart slice names to update realtime.
 		},
+		getOrgGivingCoefficient: function(org){
+			var totalPortions = 0;
+			for (var i = this.length - 1; i >= 0; i--) {
+				totalPortions += this[i].portion;
+			};
+			return ( org.portion / totalPortions );
+		},
 		saveOrgsChanges: function(newOrgs, oldOrgs){ // this really needs to be in orgsmanager!
 			for (var i = newOrgs.length - 1; i >= 0; i--) {
 				// if (! angular.equals( newOrgs[i], oldOrgs.getOrg( newOrgs[i].id ) ) ){
@@ -105,6 +112,9 @@ angular.module('angularfire2App')
 		//    console.error(err);
 		// });
     
+    this.taxonomies = [
+    	{}
+    ];
 
 
   }]);

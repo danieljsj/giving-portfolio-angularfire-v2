@@ -10,6 +10,8 @@
 				<div id="org-editor" ng-if="orgs.selectedOrg">
 					<div class="row">
 						<div class="col-xs-12">
+							Organization:
+							<sp/>
 							<input class="form-control input-lg" ng-model="orgs.selectedOrg.name">	
 						</div>
 						<!-- <div class="col-xs-2">
@@ -18,29 +20,61 @@
 					</div>
 					<sp/>
 					<div class="row">
-						<div class="col-xs-7">
-							<label class="text-right">portion of total giving:</label>
+						<div class="col-xs-12 text-left">
+							Parts/portions of total giving:
 						</div>
-						<div class="col-xs-5">
-							<div class="input-group">
-								<input type="number" ng-model="orgs.selectedOrg.portion" class="form-control">
-								<div class="input-group-addon">parts</div>
+					</div>
+					<sp/>
+					<div class="row">
+						<div class="col-xs-4">
+							<input class="form-control input-lg text-center" type="number" ng-model="orgs.selectedOrg.portion">
+						</div>
+						<div class="col-xs-8">
+							<sp/>
+							<div class="btn-group">
+								<button class="decrease btn btn-sm"
+									ng-click="orgs.incrementOrgPortion(orgs.selectedOrg, -5)">
+									<span></span>
+									<span></span>
+								</button>
+								<button class="decrease btn btn-sm"
+									ng-click="orgs.incrementOrgPortion(orgs.selectedOrg, -1)">
+									<span></span>
+								</button>
+								<button class="increase btn btn-sm"
+									ng-click="orgs.incrementOrgPortion(orgs.selectedOrg, 1)">
+									<span></span>
+								</button>
+								<button class="increase btn btn-sm"
+									ng-click="orgs.incrementOrgPortion(orgs.selectedOrg, 5)">
+									<span></span>
+									<span></span>
+								</button>
 							</div>
-						</div>
+						</div>						
 					</div>
 					<hr>
-					<div class="row">
-						<div class="col-xs-7">% of total Giving:</div>
-						<div class="col-xs-5">### %</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-7">Monthly Giving:</div>
-						<div class="col-xs-5">$ ___</div>
-					</div>					
-					<div class="row">
-						<div class="col-xs-7">Yearly Giving:</div>
-						<div class="col-xs-5">$ ___</div>
-					</div>					
+					<div id="report">
+						<div class="row">
+							<div class="col-xs-7">% of total Giving:</div>
+							<div class="col-xs-5"><output>{{orgs.getOrgGivingCoefficient(
+									orgs.selectedOrg
+								)*100 | number:0 }} %</output></div>
+						</div>
+						<div class="row">
+							<div class="col-xs-7">Monthly Giving:</div>
+							<div class="col-xs-5"><output>
+								$ {{ orgs.getOrgGivingCoefficient(
+									orgs.selectedOrg
+								)*budget.monthly() | number:2 }}</output></div>
+						</div>					
+						<div class="row">
+							<div class="col-xs-7">Yearly Giving:</div>
+							<div class="col-xs-5"><output>$ {{orgs.getOrgGivingCoefficient(
+									orgs.selectedOrg
+								)*budget.yearly() | number:2 }}</output></div>
+						</div>
+					</div>				
 					<!-- <hr>
 					<div class="row">
 						<div class="col-xs-5">Category</div>

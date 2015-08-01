@@ -83,21 +83,21 @@ input::-webkit-inner-spin-button {
 // 	@extend .form-control;
 // }
 
-// button {
-// 	@extend .btn;
-// }
-// button.increase {
-// 	@extend .btn-success;
-// 	span {
-// 		@extend .glyphicon, .glyphicon-plus;
-// 	}
-// }
-// button.decrease {
-// 	@extend .btn-warning;
-// 	span {
-// 		@extend .glyphicon, .glyphicon-minus;
-// 	}
-// }
+button {
+	@extend .btn;
+}
+button.increase {
+	@extend .btn-success;
+	span {
+		@extend .glyphicon, .glyphicon-plus;
+	}
+}
+button.decrease {
+	@extend .btn-warning;
+	span {
+		@extend .glyphicon, .glyphicon-minus;
+	}
+}
 // button.delete {
 // 	@extend .btn-danger;
 // }
@@ -107,7 +107,16 @@ input::-webkit-inner-spin-button {
 // 		@extend .btn, .btn-primary, .btn-lg, .glyphicon;
 // 	}
 // }
-
+// 
+input.portion {
+	text-align: center;
+	font-size: 1.3em;
+	width: 80px;
+}
+// #report,
+output {
+	font-family:monospace;
+}
 
 
 #giving-chart {

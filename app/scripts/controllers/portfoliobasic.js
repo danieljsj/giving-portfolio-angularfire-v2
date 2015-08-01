@@ -9,12 +9,14 @@
  */
 
 angular.module('angularfire2App')
-  .controller('PortfoliobasicCtrl', function ($scope, gpOrgsManager, gpChartInterfaces, gpHighcharts) {
+  .controller('PortfoliobasicCtrl', function ($scope, gpOrgsManager, gpChartInterfaces, gpHighcharts, budget) {
 
   	// note - the controller is angular and knows we are using angular, and knows how angular works.
   	// the controller knows that we are using highcharts, but except for a brief exception - ".series[0].setData(...)" (in refreshChart), does not know how highcharts works.
     // the controller knows that we're using angularfire, and knows how it works. ($loaded, $watch)... ... gpOrgsManager also knows we're using angularfire; that's it's whole thing.
 
+
+    $scope.budget = budget;
 
     function saveToScopeOrgsThenRunInit(orgs){
     	$scope.orgs = orgs;
