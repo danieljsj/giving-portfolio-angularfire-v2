@@ -8,24 +8,22 @@
  * Controller of the angularfire2App
  */
 angular.module('angularfire2App')
-  .controller('GivingbudgetCtrl', ['Ref','$scope','givingBudgetSettings',function (Ref, $scope, givingBudgetSettings) {
+  .controller('GivingbudgetCtrl', ['Ref','$scope','budget',function (Ref, $scope, budget) {
     // $scope.awesomeThings = [
     //   'HTML5 Boilerplate',
     //   'AngularJS',
     //   'Karma'
     // ];
-    
-    var options = givingBudgetSettings.settings;
-	
-    options.$bindTo($scope,'opt');
+    	
+    budget.settings.$bindTo($scope,'b');
 
     var defaults = {
     	currency: 'usd'
     }
 
     for ( var key in defaults ){
-    	if ( ! options.hasOwnProperty(key) ){
-    		options[key] = defaults[key];
+    	if ( ! budget.hasOwnProperty(key) ){
+    		budget[key] = defaults[key];
     	}
     }
 
@@ -44,6 +42,6 @@ angular.module('angularfire2App')
 
   // gpFinance (calc funcs)
 
-  // givingBudgetSettings
+  // budget
 
   // pick a primary. yearly or monthly.

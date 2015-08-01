@@ -3,21 +3,21 @@
 
 <label>Budget Basis:</label>
 <div class="btn-group">
-	<label class="btn btn-primary" ng-model="opt.giving.basis" btn-radio="'income'">% of Income</label>
-	<label class="btn btn-primary" ng-model="opt.giving.basis" btn-radio="'fixed'">Fixed Amount</label>
+	<label class="btn btn-primary" ng-model="b.giving.basis" btn-radio="'income'">% of Income</label>
+	<label class="btn btn-primary" ng-model="b.giving.basis" btn-radio="'fixed'">Fixed Amount</label>
 </div>
 
 <br/><br/>
 
-<div ng-if="'income'==opt.giving.basis" class="panel panel-default">
+<div ng-if="'income'==b.giving.basis" class="panel panel-default">
 	<div class="panel-body">
 		<div id="incomeAmount">
 			<label>Your Income:</label>
 			<div  class="input-group">
 				<div class="input-group-addon">
-					<currency ng-if="'usd'==opt.currency">$</currency>
+					<currency ng-if="'usd'==b.currency">$</currency>
 				</div>
-				<input ng-model="opt.income.amount" type="number" class="form-control" placeholder="Amount">
+				<input ng-model="b.income.amount" type="number" class="form-control" placeholder="Amount">
 				<div class="input-group-addon">
 					.00
 				</div>
@@ -26,15 +26,15 @@
 		<sp/>
 		<div id="incomeTimeframe">
 			<div class="btn-group">
-				<label ng-model="opt.income.timeframe" class="btn btn-primary" btn-radio="'yearly'">Yearly</label>
-				<label ng-model="opt.income.timeframe" class="btn btn-primary" btn-radio="'monthly'">Monthly</label>
+				<label ng-model="b.income.timeframe" class="btn btn-primary" btn-radio="'yearly'">Yearly</label>
+				<label ng-model="b.income.timeframe" class="btn btn-primary" btn-radio="'monthly'">Monthly</label>
 			</div>
 		</div>
 		<sp/>
 		<div id="percentageGiving">
 			<label>Percentage Giving:</label>
 			<div class="input-group">
-				<input ng-model="opt.giving.percentage" type="number" class="form-control" placeholder="Amount">
+				<input ng-model="b.giving.percentage" type="number" class="form-control" placeholder="Amount">
 				<div class="input-group-addon">
 					%
 				</div>
@@ -43,15 +43,15 @@
 		<sp/>
 		<div id="beforeOrAfterTaxes">
 			<div class="btn-group">
-				<label ng-model="opt.giving.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'before'">Before Taxes</label>
-				<label ng-model="opt.giving.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'after'">After Taxes</label>
+				<label ng-model="b.giving.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'before'">Before Taxes</label>
+				<label ng-model="b.giving.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'after'">After Taxes</label>
 			</div>
 		</div>
 		<sp/>
-		<div id="taxes" ng-if=" 'after' == opt.giving.beforeOrAfterTaxes ">
+		<div id="taxes" ng-if=" 'after' == b.giving.beforeOrAfterTaxes ">
 			<label>Estimated percent taxes paid:</label>
 			<div class="input-group">
-				<input ng-model="opt.giving.percentage" type="number" class="form-control" placeholder="Amount">
+				<input ng-model="b.giving.percentage" type="number" class="form-control" placeholder="Amount">
 				<div class="input-group-addon">
 					%
 				</div>
@@ -61,14 +61,14 @@
 	</div>
 </div>
 
-<div ng-if="'fixed'==opt.giving.basis" class="panel panel-default">
+<div ng-if="'fixed'==b.giving.basis" class="panel panel-default">
 	<div class="panel-body">
 		<label>Your Giving Budget:</label>
 		<div class="input-group">
 			<div class="input-group-addon">
-				<currency ng-if="'usd'==opt.currency">$</currency>
+				<currency ng-if="'usd'==b.currency">$</currency>
 			</div>
-			<input ng-model="opt.giving.amount" type="number" class="form-control" placeholder="Amount">
+			<input ng-model="b.giving.amount" type="number" class="form-control" placeholder="Amount">
 			<div class="input-group-addon">
 				.00
 			</div>
@@ -77,8 +77,8 @@
 		<sp/>
 
 		<div class="btn-group">
-			<label ng-model="opt.income.timeframe" class="btn btn-primary" btn-radio="'yearly'">Yearly</label>
-			<label ng-model="opt.income.timeframe" class="btn btn-primary" btn-radio="'monthly'">Monthly</label>
+			<label ng-model="b.income.timeframe" class="btn btn-primary" btn-radio="'yearly'">Yearly</label>
+			<label ng-model="b.income.timeframe" class="btn btn-primary" btn-radio="'monthly'">Monthly</label>
 		</div>
 
 	</div>
@@ -94,10 +94,10 @@
 
   <!-- <accordion id="budgetingMethods" close-others="true">
 
-    <accordion-group is-open="opt.basisIsIncome" heading="Budget Based on Income" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+    <accordion-group is-open="b.basisIsIncome" heading="Budget Based on Income" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
     </accordion-group>
 
-    <accordion-group is-open="opt.basisIsManual" heading="Budget a Fixed Amount">
+    <accordion-group is-open="b.basisIsManual" heading="Budget a Fixed Amount">
       <p>The body of the accordion group grows to fit the contents</p>
     </accordion-group>
  
