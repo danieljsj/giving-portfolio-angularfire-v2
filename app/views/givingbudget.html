@@ -1,4 +1,4 @@
-<h3>Budget Settings:</h3>
+<h3>Giving Budget Settings:</h3>
 
 
 <label>Budget Basis:</label>
@@ -44,11 +44,11 @@
 		<div id="beforeOrAfterTaxes">
 			<div class="btn-group">
 				<label ng-model="opt.giving.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'before'">Before Taxes</label>
-				<label ng-model="opt.income.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'after'">After Taxes</label>
+				<label ng-model="opt.giving.beforeOrAfterTaxes" class="btn btn-primary" btn-radio="'after'">After Taxes</label>
 			</div>
 		</div>
 		<sp/>
-		<div id="taxes">
+		<div id="taxes" ng-if=" 'after' == opt.giving.beforeOrAfterTaxes ">
 			<label>Estimated percent taxes paid:</label>
 			<div class="input-group">
 				<input ng-model="opt.giving.percentage" type="number" class="form-control" placeholder="Amount">
@@ -86,13 +86,9 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
-		<label>Your Giving Budget:</label>
-		<h2>
-			<input class="form-control input-lg" value="$3,021 / yr" disabled></input> 
-		</h2>
-		<h3>
-			<input class="form-control" value="$270 / mo" disabled></input> 
-		</h3>
+		<label>Your Giving Budget Amounts:</label>
+		<input class="form-control text-center input-lg" value="$3,021 / yr" disabled></input> 
+		<input class="form-control text-center" value="$270 / mo" disabled></input> 
 	</div>
 </div>
 
