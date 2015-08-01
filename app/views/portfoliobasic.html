@@ -1,36 +1,42 @@
-<highchart id="giving-chart" config="chartConfig"></highchart>
+<div id="portfolioBasic" class="row">
 
-<div id="org-controls">
-	
-	<div class="org" ng-if="orgs.selectedOrg">
-		<button class="delete" ng-click="orgs.$remove(orgs.selectedOrg);">
-			<span class="glyphicon glyphicon-remove"></span>
-		</button>
-		<input type="text" class="name" ng-model="orgs.selectedOrg.name" ng-change="orgs.$save(orgs.selectedOrg)"></input>
-		<button class="decrease" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,-5);">
-			<span></span>
-			<span></span>
-		</button>
-		<button class="decrease" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,-1);">
-			&nbsp;<span></span>&nbsp;
-		</button>
-		<input class="portion" type="number" ng-model="orgs.selectedOrg.portion" ng-change="orgs.$save(orgs.selectedOrg)"></button>
-		<button class="increase" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,1);">
-			&nbsp;<span></span>&nbsp;
-		</button>
-		<button class="increase" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,5);">
-			<span></span>
-			<span></span>
-		</button>
+	<div class="col-sm-6 col-sm-push-6">
+		<highchart id="giving-chart" config="chartConfig"></highchart>
 	</div>
 
-	<div class="other" ng-if="!orgs.selectedOrg">
-		Please select an organization to modify
+	<div id="org-controls" class="col-sm-6 col-sm-pull-6">	
+		<div class="org" ng-if="orgs.selectedOrg">
+			<button class="delete" ng-click="orgs.$remove(orgs.selectedOrg);">
+				<span class="glyphicon glyphicon-remove"></span>
+			</button>
+			<input type="text" class="name" ng-model="orgs.selectedOrg.name" ng-change="orgs.$save(orgs.selectedOrg)"></input>
+			<button class="decrease" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,-5);">
+				<span></span>
+				<span></span>
+			</button>
+			<button class="decrease" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,-1);">
+				&nbsp;<span></span>&nbsp;
+			</button>
+			<input class="portion" type="number" ng-model="orgs.selectedOrg.portion" ng-change="orgs.$save(orgs.selectedOrg)"></button>
+			<button class="increase" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,1);">
+				&nbsp;<span></span>&nbsp;
+			</button>
+			<button class="increase" ng-click="orgs.incrementOrgPortion(orgs.selectedOrg,5);">
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+
+		<div class="other" ng-if="!orgs.selectedOrg">
+			Please select an organization to modify
+		</div>
+		
+		<div id="org-form">
+			<form>
+		        <input type="submit" class="" ng-click="addOrganization();" value="+"></input>
+			</form>
+		</div>
+
 	</div>
-	
-	<div id="org-form">
-		<form>
-	        <input type="submit" class="" ng-click="addOrganization();" value="+"></input>
-		</form>
-	</div>
+
 </div>
