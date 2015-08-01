@@ -19,5 +19,7 @@ angular.module('angularfire2App', [
     'ngTouch',
     'firebase',
     'firebase.ref',
-    'firebase.auth'
+    'firebase.auth',
+
+    'ui.bootstrap'
   ]);
