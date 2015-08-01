@@ -15,7 +15,8 @@ angular.module('angularfire2App')
     //   'Karma'
     // ];
     	
-    budget.settings.$bindTo($scope,'b');
+    budget.settings.$bindTo($scope,'bs'); // budget settings
+    $scope.budget = budget; // budget funcs
 
     var defaults = {
     	currency: 'usd'
@@ -26,15 +27,6 @@ angular.module('angularfire2App')
     		budget[key] = defaults[key];
     	}
     }
-
-	// coming soon! 
-    // $scope.getAnnualGiving(){
-    // 	if ( 'income' == $scope.opt.giving.basis ){
-    // 		if ( 'yearly' == $scope.opt.giving ){
-
-    // 		}
-    // 	}
-    // }
 
   }]);
 
