@@ -16,8 +16,8 @@ original_branch_name=${branch_name##refs/heads/}
 
 # getting the 'deploy' branch to contain ALL (up-to-date) site files:
 
-git checkout deploy
-read -p "If checking out 'deploy' failed... then hit ctrl+c and go commit everything into current, ostensibly master, branch"
+git checkout staticDeploy
+read -p "If checking out 'staticDeploy' failed... then hit ctrl+c and go commit everything into current, ostensibly master, branch"
 git merge master
 
 bower install
