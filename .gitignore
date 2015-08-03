@@ -3,6 +3,3 @@ dist
 .tmp
 .sass-cache
 /bower_components
-
-app/styles/main.css
-app/styles/main.css.map
