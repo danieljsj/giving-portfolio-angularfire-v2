@@ -15,18 +15,22 @@ original_branch_name=${branch_name##refs/heads/}
 #todo: quit the script if not currently in master
 
 git checkout deploy
-
 git merge master
 
 bower install
-
 rsync -r bower_components/ app/bower_components/
 
 sass app/styles/main.scss app/styles/main.css
 
-firebase deploy
+read -p "firebase deploy? (y/n): " #-n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    firebase deploy
+fi
 
-#todo: trigger a phonegap update programmatically
+echo
+echo "NOTE: PhoneGapBuild must be built/triggered manually." # Implementation is too large for this script, and requires storing password. not worth it. http://snipplr.com/view/61101/one-click-build-for-phonegap-build-to-android/
 
 
 git checkout $original_branch_name
