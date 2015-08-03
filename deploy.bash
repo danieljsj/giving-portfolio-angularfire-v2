@@ -7,9 +7,9 @@ read -p "READ AND PRESS ANY KEY TO APPROVE, OR PRESS CTRL+C TO CANCEL!"
 
 
 
-original_branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
-original_branch_name="(unnamed branch)"     # detached HEAD
-original_branch_name=${branch_name##refs/heads/}
+original_branch_name=$(git symbolic-ref -q HEAD)
+original_branch_name=${original_branch_name##refs/heads/}
+original_branch_name=${original_branch_name:-HEAD}
 
 
 #todo: quit the script if not currently in master
@@ -17,7 +17,9 @@ original_branch_name=${branch_name##refs/heads/}
 # getting the 'deploy' branch to contain ALL (up-to-date) site files:
 
 git checkout staticDeploy
-read -p "If checking out 'staticDeploy' failed... then hit ctrl+c and go commit everything into current, ostensibly master, branch"
+echo
+read -p "DID 'GIT CHECKOUT STATICDEPLOY' FAIL?... IF SO, CTRL+C, OTHERWISE ANY KEY TO CONTINUE."
+echo
 git merge master
 
 bower install
