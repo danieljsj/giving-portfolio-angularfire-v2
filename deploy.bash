@@ -31,7 +31,7 @@ git add app/styles/main.css
 
 git commit -m "deployment commit of bower_components, main.css"
 echo "Don't worry if there's a commit error; it just means no changes to main.css or bower_components."
-git push origin deploy
+git push
 echo
 
 
