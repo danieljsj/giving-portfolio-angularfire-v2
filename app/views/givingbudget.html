@@ -3,8 +3,8 @@
 
 <label>Budget Basis:</label>
 <div class="btn-group">
-	<label class="btn btn-primary" ng-model="b.givingBasis" btn-radio="'income'">% of Income</label>
-	<label class="btn btn-primary" ng-model="b.givingBasis" btn-radio="'fixed'">Fixed Amount</label>
+	<label class="btn btn-primary"ng-click="b.$save()" ng-model="b.givingBasis" btn-radio="'income'">% of Income</label>
+	<label class="btn btn-primary"ng-click="b.$save()" ng-model="b.givingBasis" btn-radio="'fixed'">Fixed Amount</label>
 </div>
 
 <br/><br/>
@@ -20,7 +20,7 @@
 					<div class="input-group-addon">
 						<currency ng-if="'usd'==b.currency">$</currency>
 					</div>
-					<input ng-model="b.incomeAmount" type="number" class="form-control" placeholder="Amount">
+					<input ng-model="b.incomeAmount" type="number"ng-change="b.$save()"class="form-control" placeholder="Amount">
 					<div class="input-group-addon">
 						.00
 					</div>
@@ -29,8 +29,8 @@
 			</div>
 			<div class="col-sm-4"><!-- for some reason only col xs- is working???-->
 				<div id="incomeTimeframe" class="btn-group">
-					<label ng-model="b.incomeTimeframe" class="btn btn-primary" btn-radio="'yearly'">Yearly</label>
-					<label ng-model="b.incomeTimeframe" class="btn btn-primary" btn-radio="'monthly'">Monthly</label>
+					<label ng-model="b.incomeTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'yearly'">Yearly</label>
+					<label ng-model="b.incomeTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'monthly'">Monthly</label>
 				</div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="input-group">
-					<input ng-model="b.incomeGivingPercentage" type="number" class="form-control" placeholder="Amount">
+					<input ng-model="b.incomeGivingPercentage" type="number"ng-change="b.$save()"class="form-control" placeholder="Amount">
 					<div class="input-group-addon">
 						%
 					</div>
@@ -50,8 +50,8 @@
 			</div>
 			<div class="col-sm-5">
 				<div id="beforeOrAfterTaxes" class="btn-group">
-					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-small btn-primary" btn-radio="'before'">Before Taxes</label>
-					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-primary" btn-radio="'after'">After Taxes</label>
+					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-small btn-primary"ng-click="b.$save()" btn-radio="'before'">Before Taxes</label>
+					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-primary"ng-click="b.$save()" btn-radio="'after'">After Taxes</label>
 				</div>
 			</div>
 		</div>
@@ -63,7 +63,7 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="input-group">
-					<input ng-model="b.incomeTaxPercentage" type="number" class="form-control" placeholder="Amount">
+					<input ng-model="b.incomeTaxPercentage" type="number"ng-change="b.$save()" class="form-control" placeholder="Amount">
 					<div class="input-group-addon">
 						%
 					</div>
@@ -84,7 +84,7 @@
 				<div class="input-group-addon">
 					<currency ng-if="'usd'==b.currency">$</currency>
 				</div>
-				<input ng-model="b.fixedGivingAmount" type="number" class="form-control" placeholder="Amount">
+				<input ng-model="b.fixedGivingAmount" type="number"ng-change="b.$save()"class="form-control" placeholder="Amount">
 				<div class="input-group-addon">
 					.00
 				</div>
@@ -92,8 +92,8 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="btn-group">
-				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary" btn-radio="'yearly'">Yearly</label>
-				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary" btn-radio="'monthly'">Monthly</label>
+				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'yearly'">Yearly</label>
+				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'monthly'">Monthly</label>
 			</div>
 		</div>
 	</div>
@@ -113,9 +113,9 @@
 	</div>
 </div>
 
-<!-- <div class="btn-group">
-	<label class="btn btn-primary" ng-click="b.$save()">Save</label>
-</div> -->
+<div class="btn-group">
+	<label class="btn btn-primary"ng-click="b.$save()">Save</label>
+</div>
 
 
   <!-- <accordion id="budgetingMethods" close-others="true">

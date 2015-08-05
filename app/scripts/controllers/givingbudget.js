@@ -10,10 +10,9 @@
 angular.module('angularfire2App')
   .controller('GivingbudgetCtrl', ['Ref','$scope','budget',function (Ref, $scope, budget) {
    
+    console.log(budget);
 
-    var b = budget.fbObj
-
-    if( b.hasOwnProperty('currency') ) { init(); } else { b.$loaded(init); }
+    if( budget.hasOwnProperty('currency') ) { init(); } else { budget.$loaded(init); }
 
 
 
@@ -21,13 +20,25 @@ angular.module('angularfire2App')
 
       applyDefaults();
       
-      b.$bindTo($scope, 'b');
+      // budget.$bindTo($scope, 'b');
 
-      $scope.budget = budget;
+      $scope.b = budget;
+
+      // $scope.$watch(
+      //   'b',
+      //   function(newVal,oldVal){
+      //     console.log(newVal);
+      //   },
+      //   true
+      // )
+      // Error: [$rootScope:infdig] 10 $digest() iterations reached. Aborting!
+
+      // var query = $('.container input, .container .btn'); 
+      // console.log(query);
+      // query.on('click change', tmpSaveBudget );
+      // PROBLEM: this query is only getting the stuff that was already loaded. looks like anything inside ng-if is really not-loading-until-satisfied, not just hiding then un-hiding.
 
     }
-
-
 
     function applyDefaults(){
       
@@ -35,7 +46,7 @@ angular.module('angularfire2App')
         currency: 'usd'
       }
       
-      angular.extend(b,defaults);
+      angular.extend(budget,defaults);
 
     }
 
