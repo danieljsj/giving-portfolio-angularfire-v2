@@ -22,7 +22,7 @@ angular.module('angularfire2App')
     	currency: 'usd'
     }
 
-    for ( var key in defaults ){
+    for ( var key in defaults ){ // not working; why?
     	if ( ! budget.hasOwnProperty(key) ){
     		budget[key] = defaults[key];
     	}
