@@ -105,17 +105,19 @@
 			<label>Your Budget Amounts:</label>
 		</div>
 		<div class="col-sm-4">
-			<input class="form-control text-center input-lg" value="${{ yearly() | number:2 }} / yr" disabled></input> 
+			<input class="form-control text-center input-lg" value="${{ budget.yearly() | number:2 }} / yr" disabled></input> 
 		</div>
 		<div class="col-sm-4">
-			<input class="form-control text-center" value="${{ monthly() | number:2 }} / mo" disabled></input> 
+			<input class="form-control text-center" value="${{ budget.monthly() | number:2 }} / mo" disabled></input> 
 		</div>
 	</div>
 </div>
 
-<div class="btn-group">
-	<label class="btn btn-primary" ng-model="b.$save()" btn-radio="'income'">Save</label>
-</div>
+<!-- <div class="btn-group">
+	<label class="btn btn-primary" ng-click="b.$save()">Save</label>
+</div> -->
+
+
   <!-- <accordion id="budgetingMethods" close-others="true">
 
     <accordion-group is-open="b.basisIsIncome" heading="Budget Based on Income" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">

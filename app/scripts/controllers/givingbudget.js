@@ -8,52 +8,35 @@
  * Controller of the angularfire2App
  */
 angular.module('angularfire2App')
-  .controller('GivingbudgetCtrl', ['Ref','$scope','Budget',function (Ref, $scope, Budget) {
-    // $scope.awesomeThings = [
-    //   'HTML5 Boilerplate',
-    //   'AngularJS',
-    //   'Karma'
-    // ];
-    
-    var budgetPromise = new Budget();
+  .controller('GivingbudgetCtrl', ['Ref','$scope','budget',function (Ref, $scope, budget) {
+   
 
-    budgetPromise.$loaded(function(budget){
+    var b = budget.fbObj
 
-      console.log(budget);
-     
-      $scope.b = budget;
-
-      window.scope = $scope;
-
-      // $scope.$watch( 
-      //   'b',
-      //   function(newValue,oldValue){
-      //     // console.log($scope.b);
-      //     // $scope.b.$save(); // even loops without this...
-      //   },
-      //   true
-      // );
-      // // issue: this is saving only the first time, only when 
+    if( b.hasOwnProperty('currency') ) { init(); } else { b.$loaded(init); }
 
 
+
+    function init(){
+
+      applyDefaults();
+      
+      b.$bindTo($scope, 'b');
+
+      $scope.budget = budget;
+
+    }
+
+
+
+    function applyDefaults(){
+      
       var defaults = {
-      	currency: 'usd'
+        currency: 'usd'
       }
+      
+      angular.extend(b,defaults);
 
-      for ( var key in defaults ){ // not working; why?
-      	if ( ! budget.hasOwnProperty(key) ){
-      		budget[key] = defaults[key];
-      	}
-      }
-    })
-
+    }
 
   }]);
-
-
-
-  // gpFinance (calc funcs)
-
-  // budget
-
-  // pick a primary. yearly or monthly.
