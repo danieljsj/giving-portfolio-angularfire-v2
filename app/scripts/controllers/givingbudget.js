@@ -15,8 +15,7 @@ angular.module('angularfire2App')
     //   'Karma'
     // ];
     	
-    budget.settings.$bindTo($scope,'bs'); // budget settings
-    $scope.budget = budget; // budget funcs
+    budget.$bindTo($scope,'b'); // budget settings
 
     var defaults = {
     	currency: 'usd'
