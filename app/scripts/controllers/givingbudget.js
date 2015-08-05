@@ -15,39 +15,38 @@ angular.module('angularfire2App')
     //   'Karma'
     // ];
     
-    var budget = new Budget();
+    var budgetPromise = new Budget();
 
-    // debug:
-    budget.yearly = function(){return 42;}
-    budget.monthly = function(){return 42;}
-    console.log(budget); // has no immediate methods, has methods in prototype.
-    // alert(budget.yearly()); // prototype works from normal function call (despite not getting called from templates, using parse)
+    budgetPromise.$loaded(function(budget){
 
-    $scope.yearly = budget.yearly;
+      console.log(budget);
+     
+      $scope.b = budget;
 
-    var foo = {};
-    foo.bar = function(){return 'bar';}
-    console.log(foo); // has bar method.
+      window.scope = $scope;
+
+      // $scope.$watch( 
+      //   'b',
+      //   function(newValue,oldValue){
+      //     // console.log($scope.b);
+      //     // $scope.b.$save(); // even loops without this...
+      //   },
+      //   true
+      // );
+      // // issue: this is saving only the first time, only when 
 
 
-    budget.$bindTo($scope,'b'); 
-    // I THINK I've GOT ITbindTo only brings in the data, not the methods! 
-    // INDEED!: https://github.com/firebase/angularfire/issues/380 <=fix is there; just add object to scope, then set up a $watch on it. It's kinda weird though... couldn't their bindTo
+      var defaults = {
+      	currency: 'usd'
+      }
 
-    console.log($scope); // shows property 'b:'
-    console.log($scope.b); // undefined. INTERESTING! WTDEUCE? (note: 'b' was added by $bindTo)
-    // $scope[b].yearly = budget.yearly; // breaks; can't set property of undefined
-    
+      for ( var key in defaults ){ // not working; why?
+      	if ( ! budget.hasOwnProperty(key) ){
+      		budget[key] = defaults[key];
+      	}
+      }
+    })
 
-    var defaults = {
-    	currency: 'usd'
-    }
-
-    for ( var key in defaults ){ // not working; why?
-    	if ( ! budget.hasOwnProperty(key) ){
-    		budget[key] = defaults[key];
-    	}
-    }
 
   }]);
 

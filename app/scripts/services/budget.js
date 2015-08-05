@@ -67,9 +67,7 @@ angular.module('angularfire2App')
   		
   		var ref = Ref.child('budget');
 
-  		console.log(Budget);
-
-  		return new Budget(ref);
+  		return new Budget(ref)/*.$asObject()*/;
 
   	} ;
 
