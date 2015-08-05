@@ -16,7 +16,17 @@ angular.module('angularfire2App')
     // ];
     
     var budget = new Budget();
-    	
+
+    // debug:
+    budget.yearly = function(){return 42;}
+    budget.monthly = function(){return 42;}
+    console.log(budget); // has no methods.
+
+    var foo = {};
+    foo.bar = function(){return 'bar';}
+    console.log(foo); // has bar method.
+
+
     budget.$bindTo($scope,'b'); // budget settings
 
     var defaults = {

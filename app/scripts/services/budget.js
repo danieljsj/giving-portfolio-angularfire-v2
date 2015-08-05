@@ -13,9 +13,7 @@ angular.module('angularfire2App')
 
     var Budget = $firebaseObject.$extend({
 
-
-    	// DEBUGTODO: console.log budget.monthly now and later
-
+    	// PROBLEM!/CODE BUG: firebase objects immediately shed all methods when added. instead of adding methods directly, we must use fb's $extend, which sets your methods-containing object as a protoype. however, the templating engine (/$scope?) appears not to see this prototype, nor does my angular inspector chrome extension. so I'll need to figure out how to actually get at those methods...
 
 	  	yearly: function(){ // not sure whether storing things with funcs in firebase will break things.
 
@@ -68,6 +66,8 @@ angular.module('angularfire2App')
   		// not using userId yet, but may eventually, so i'm setting this up per the guide to extending services: https://www.firebase.com/docs/web/libraries/angular/guide/extending-services.html
   		
   		var ref = Ref.child('budget');
+
+  		console.log(Budget);
 
   		return new Budget(ref);
 
