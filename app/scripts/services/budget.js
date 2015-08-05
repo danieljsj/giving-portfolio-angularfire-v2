@@ -53,7 +53,17 @@ angular.module('angularfire2App')
 
 	  	monthly: function(){
 	  		return this.yearly() / 12;
+	  	},
+
+	  	delayedSave: function(e){
+	  		console.log(e);
+	  		console.log(this);
+	  		var el = $(e.target); 
+	  		console.log(el);
+	  		$(e.target).dblclick();
+	  		// setTimeout(this.$save,0); // "this" seems to work, but "self" does not. cuz we're out of scope now. hmm.
 	  	}
+
 	});
 
 	console.log(Budget);

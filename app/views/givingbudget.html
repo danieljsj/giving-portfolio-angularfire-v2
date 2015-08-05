@@ -3,8 +3,8 @@
 
 <label>Budget Basis:</label>
 <div class="btn-group">
-	<label class="btn btn-primary"ng-click="b.$save()" ng-model="b.givingBasis" btn-radio="'income'">% of Income</label>
-	<label class="btn btn-primary"ng-click="b.$save()" ng-model="b.givingBasis" btn-radio="'fixed'">Fixed Amount</label>
+	<label class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" ng-model="b.givingBasis" btn-radio="'income'">% of Income</label>
+	<label class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" ng-model="b.givingBasis" btn-radio="'fixed'">Fixed Amount</label>
 </div>
 
 <br/><br/>
@@ -29,8 +29,8 @@
 			</div>
 			<div class="col-sm-4"><!-- for some reason only col xs- is working???-->
 				<div id="incomeTimeframe" class="btn-group">
-					<label ng-model="b.incomeTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'yearly'">Yearly</label>
-					<label ng-model="b.incomeTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'monthly'">Monthly</label>
+					<label ng-model="b.incomeTimeframe" class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" btn-radio="'yearly'">Yearly</label>
+					<label ng-model="b.incomeTimeframe" class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" btn-radio="'monthly'">Monthly</label>
 				</div>
 			</div>
 		</div>
@@ -50,8 +50,8 @@
 			</div>
 			<div class="col-sm-5">
 				<div id="beforeOrAfterTaxes" class="btn-group">
-					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-small btn-primary"ng-click="b.$save()" btn-radio="'before'">Before Taxes</label>
-					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-primary"ng-click="b.$save()" btn-radio="'after'">After Taxes</label>
+					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-small btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" btn-radio="'before'">Before Taxes</label>
+					<label ng-model="b.incomeBeforeOrAfterTaxes" class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" btn-radio="'after'">After Taxes</label>
 				</div>
 			</div>
 		</div>
@@ -92,8 +92,8 @@
 		</div>
 		<div class="col-sm-4">
 			<div class="btn-group">
-				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'yearly'">Yearly</label>
-				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary"ng-click="b.$save()" btn-radio="'monthly'">Monthly</label>
+				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" btn-radio="'yearly'">Yearly</label>
+				<label ng-model="b.fixedGivingTimeframe" class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)" btn-radio="'monthly'">Monthly</label>
 			</div>
 		</div>
 	</div>
@@ -114,7 +114,7 @@
 </div>
 
 <div class="btn-group">
-	<label class="btn btn-primary"ng-click="b.$save()">Save</label>
+	<label class="btn btn-primary"ng-dbl-click="b.$save()"ng-click="b.delayedSave($event)">Save</label>
 </div>
 
 

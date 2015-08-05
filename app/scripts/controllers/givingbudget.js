@@ -50,4 +50,9 @@ angular.module('angularfire2App')
 
     }
 
+    // $scope.delayedSave = function(fbObj){
+    //   console.log(fbObj);
+    //   setTimeout(fbObj.$save,0); // "this" seems to work, but "self" does not. cuz we're out of scope now. hmm.
+    // }
+
   }]);
