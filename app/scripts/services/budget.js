@@ -52,6 +52,8 @@ angular.module('angularfire2App')
   		return this.yearly() / 12;
   	}
 
+  	// DEBUGTODO: console.log budget.monthly now and later
+
   	return budget;
 
 }]);
