@@ -1,7 +1,6 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-// @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss"; // hid this cuz it was breaking plain old sass
-@import "../bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.scss"; // hid this cuz it was breaking plain old sass
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 @import "_demo.scss";

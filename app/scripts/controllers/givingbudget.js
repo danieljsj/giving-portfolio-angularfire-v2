@@ -8,12 +8,14 @@
  * Controller of the angularfire2App
  */
 angular.module('angularfire2App')
-  .controller('GivingbudgetCtrl', ['Ref','$scope','budget',function (Ref, $scope, budget) {
+  .controller('GivingbudgetCtrl', ['Ref','$scope','Budget',function (Ref, $scope, Budget) {
     // $scope.awesomeThings = [
     //   'HTML5 Boilerplate',
     //   'AngularJS',
     //   'Karma'
     // ];
+    
+    var budget = new Budget();
     	
     budget.$bindTo($scope,'b'); // budget settings
 
