@@ -23,22 +23,41 @@ angular.module('angularfire2App')
 			// this.$add({portion:0, name:''}).then(this.selectOrg);
 
 			this.$add({portion:0, name:''}).then(function(ref) {
-			  var id = ref.key();
-			  console.log("added record with id: "); console.log( id );
-			  console.log("org's index in array: "); console.log( this.$indexFor(id) );
-			  // this.selectOrg(id);
-			  console.log("ref: "); console.log(ref);
+			  // var id = ref.key();
+			  // console.log("added record with id: "); console.log( id );
+			  // console.log("org's index in array: "); console.log( this.$indexFor(id) );
+			  // // this.selectOrg(id);
+			  // console.log("ref: "); console.log(ref);
 			  this.selectOrg(ref);
 			}.bind(this));
 
 		},
 		selectOrg: function(orgRep){
 			var org = this.getOrg(orgRep)
-			console.log("about to select this org: ", org);
+			console.log("about to select this org: ", org); // todo: debug: sometimes no org selected? oddly, it selected only when I had this console.log up???
 			this.selectedOrg = org;
 			
-			this.saveOrgsChanges(this);
+			this.saveOrgsChanges(this); // todo: save only the one org.
 		},
+		selectNext: function(){
+			if ( ! this.selectedOrg ){
+				this.selectOrg(this[0]);
+			}
+			else {
+				this.selectOrg(this[this.indexOf(this.selectedOrg)+1]);
+			}
+		},
+		selectPrev: function(){
+			if ( ! this.selectedOrg ){
+				this.selectOrg(this[this.length-1]);
+			}
+			else {
+				this.selectOrg(this[this.indexOf(this.selectedOrg)-1]);
+			}
+		},		// not in use yet:
+		// getSelectedOrgIndex: function(){
+		// 	return this.$indexFor(this.selectedOrg.$id);
+		// }
 		getOrg: function(orgRep){
 			var orgId = this.getOrgId(orgRep)
 			// for (var i = this.length - 1; i >= 0; i--) { // POSSIBLE PROBLEM: IT'S POSSIBLE THAT THE
@@ -59,11 +78,11 @@ angular.module('angularfire2App')
 			if ('string' === typeof orgRep)
 				return orgRep;
 
-			if (!!orgRep.$id)
+			if (orgRep.$id)
 				return orgRep.$id;
 
 			// TODO/QN/FAIL-LESSON: obs' prototypes aren't always visible if the ob is passed into another func??? compare to this.addOrg, and doc: https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-addnewdata ... WAIT, IT'S TOTALLY WORKING... I must have just typed something funny?
-			if (!!orgRep.key) {
+			if (orgRep.key) {
 				console.log("found orgRep.key");
 				return orgRep.key(); 
 			}
