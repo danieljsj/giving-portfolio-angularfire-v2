@@ -16,10 +16,10 @@ angular.module('angularfire2App')
     // the controller knows that we're using angularfire, and knows how it works. ($loaded, $watch)... ... gpOrgsManager also knows we're using angularfire; that's it's whole thing.
 
 
-    $scope.budget = budget;
+    $scope.budget = window.budget;
 
     function saveToScopeOrgsThenRunInit(orgs){
-    	$scope.orgs = orgs;
+    	$scope.orgs = window.orgs = orgs;
     	init();
     }
 

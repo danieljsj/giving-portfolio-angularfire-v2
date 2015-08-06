@@ -20,8 +20,24 @@ angular.module('angularfire2App')
 
 		addOrg: function(){
 
-			this.$add({portion:0, name:''}).then(this.selectOrg);
+			// this.$add({portion:0, name:''}).then(this.selectOrg);
 
+			this.$add({portion:0, name:''}).then(function(ref) {
+			  var id = ref.key();
+			  console.log("added record with id: "); console.log( id );
+			  console.log("org's index in array: "); console.log( this.$indexFor(id) );
+			  // this.selectOrg(id);
+			  console.log("ref: "); console.log(ref);
+			  this.selectOrg(ref);
+			}.bind(this));
+
+		},
+		selectOrg: function(orgRep){
+			var org = this.getOrg(orgRep)
+			console.log("about to select this org: ", org);
+			this.selectedOrg = org;
+			
+			this.saveOrgsChanges(this);
 		},
 		getOrg: function(orgRep){
 			var orgId = this.getOrgId(orgRep)
@@ -30,26 +46,33 @@ angular.module('angularfire2App')
 			// 		return this[i];
 			// 	}
 			// };
-			return this.$getRecord(orgRep.$id);
+			console.log("orgId returned to getOrg: ", orgId);
+			return this.$getRecord(orgId);
 		},
 		getOrgId: function(orgRep){
-			var id = false;
+
+			console.log('getting id for org with the following representation: ',orgRep);
+
+			if ('number' === typeof orgRep)
+				return this[orgRep].$id; // for performance, this could go up a level, into selectOrg, since this requires coverting index to id, which then will be used to get an index...
+
 			if ('string' === typeof orgRep)
 				return orgRep;
-			if (id = this.$id)
-				return id;
-			if (this.key)
-				return this.key(); // something's not working here. here's how it's supposed to work: https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-addnewdata
+
+			if (!!orgRep.$id)
+				return orgRep.$id;
+
+			// TODO/QN/FAIL-LESSON: obs' prototypes aren't always visible if the ob is passed into another func??? compare to this.addOrg, and doc: https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-addnewdata ... WAIT, IT'S TOTALLY WORKING... I must have just typed something funny?
+			if (!!orgRep.key) {
+				console.log("found orgRep.key");
+				return orgRep.key(); 
+			}
+			// if (orgRep.prototype.key){ // TypeError: Cannot read property 'key' of undefined
+			// 	console.log("found orgRep.prototype.key");
+			// 	return orgRep.key();
+			// } 
 			
 			console.log(orgRep); throw Error("gpError: getOrgId does not support the layout of the incoming variable");
-		},
-		selectOrg: function(orgRep){
-			// alert(orgRep);
-			console.log(this);
-			this.selectedOrg = this.getOrg(orgRep);
-			// todo: what about when it's null?
-			
-			this.saveOrgsChanges(this); // todo: something better than this, but currently this is just a way to (hopefully) get it to show up in the selected slot asap.
 		},
 		incrementOrgPortion: function(org, delta){
 			// TODO: if ( 0 <= org.portion + delta ) {  
