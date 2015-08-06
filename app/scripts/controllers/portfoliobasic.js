@@ -40,7 +40,7 @@ angular.module('angularfire2App')
 			$scope.givingChartInfo = getGivingChartInfo();
 
 			// Chart Config
-			$scope.givingChartConfig = gpHighcharts.GivingChart.getHcConfig(
+			$scope.givingChartConfig = gpHighcharts.getHcConfig(
 				$scope.givingChartInfo,
 				$scope.orgs.selectOrg
 			);
@@ -69,7 +69,7 @@ angular.module('angularfire2App')
 
 		// $scope.givingChart.series[0].setData(getGivingChartInfo());
 		$scope.givingChart.series[0].setData(
-			gpHighcharts.GivingChart.getHcData( getGivingChartInfo() )
+			gpHighcharts.getHcData( getGivingChartInfo() )
 		);
 
 		$scope.orgs.saveOrgsChanges(newOrgs, oldOrgs); // ... this is firing ... without me doing anything in the UI; why?

@@ -36,7 +36,7 @@ angular.module('angularfire2App')
 			var org = this.getOrg(orgRep)
 			console.log("about to select this org: ", org); // todo: debug: sometimes no org selected? oddly, it selected only when I had this console.log up???
 			this.selectedOrg = org;
-			
+			// $scope.givingChart.series[0] ... nonono... make it a method of the highchart
 			this.saveOrgsChanges(this); // todo: save only the one org.
 		},
 		selectNext: function(){
