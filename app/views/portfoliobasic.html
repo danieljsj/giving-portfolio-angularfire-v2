@@ -50,7 +50,7 @@
 									<span></span>
 									<span></span>
 								</button>
-							</div>
+							</div><!-- .btn-group -->
 						</div>						
 					</div>
 					<hr>
@@ -82,11 +82,28 @@
 					</div> -->
 				</div>
 				<div id="select-org-message" ng-if="!orgs.selectedOrg">
-					Please select <!-- or add --> an organization.
+					Please select or add an organization.
 				</div>
-			</div>
-
+			</div><!-- .panel-body -->
+		</div><!-- .panel -->
+	</div><!-- #org-controls -->
+	<div class="text-center">
+		<div class="btn-group">
+			<button class="btn btn-default btn-sm"
+				ng-click-COMING_SOON-ORG_SELECT_PREV="">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</button>
+			<button class="btn btn-primary btn-sm"
+				ng-click="orgs.addOrg();">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+			<button class="btn btn-default btn-sm"
+				ng-click-COMING_SOON ORG_SELECT_NEXT="">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</button>
 		</div>
+
+
 	</div>
 	
 

@@ -19,29 +19,34 @@ angular.module('angularfire2App')
 		},
 
 		addOrg: function(){
-			var newOrg = {portion:0, name:''};
-			
-			this.$add(newOrg);
-		}, // needed as a values-adding wrapper for $add
 
-		getOrg: function(orgOrId){
-			// TODO: if id, loop and return one with matching id. if org-esque ob, return it
-			if ('string' == typeof(orgOrId)){
-				for (var i = this.length - 1; i >= 0; i--) { // POSSIBLE PROBLEM: IT'S POSSIBLE THAT THE
-					if(orgOrId == this[i].$id){
-						return this[i];
-					}
-				};
-			}
-			if ('object' == typeof(orgOrId)){
-				throw Error("error: getOrg does not yet support finding an object by reference!");
-			}
-			throw Error("error: getOrg does not support the type of the incoming variable");
+			this.$add({portion:0, name:''}).then(this.selectOrg);
+
 		},
-		selectOrg: function(orgOrId){
-			// alert(orgOrId);
+		getOrg: function(orgRep){
+			var orgId = this.getOrgId(orgRep)
+			// for (var i = this.length - 1; i >= 0; i--) { // POSSIBLE PROBLEM: IT'S POSSIBLE THAT THE
+			// 	if(orgRep == this[i].$id){
+			// 		return this[i];
+			// 	}
+			// };
+			return this.$getRecord(orgRep.$id);
+		},
+		getOrgId: function(orgRep){
+			var id = false;
+			if ('string' === typeof orgRep)
+				return orgRep;
+			if (id = this.$id)
+				return id;
+			if (this.key)
+				return this.key(); // something's not working here. here's how it's supposed to work: https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-addnewdata
+			
+			console.log(orgRep); throw Error("gpError: getOrgId does not support the layout of the incoming variable");
+		},
+		selectOrg: function(orgRep){
+			// alert(orgRep);
 			console.log(this);
-			this.selectedOrg = this.getOrg(orgOrId);
+			this.selectedOrg = this.getOrg(orgRep);
 			// todo: what about when it's null?
 			
 			this.saveOrgsChanges(this); // todo: something better than this, but currently this is just a way to (hopefully) get it to show up in the selected slot asap.
