@@ -9,7 +9,7 @@
  */
 angular.module('angularfire2App')
   .service('gpOrgsManager', ['Ref', '$firebaseArray', function (Ref, $firebaseArray) {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+	// AngularJS will instantiate a singleton by calling "new" on this function
 
 
 	var orgsFuncs = {
@@ -64,7 +64,7 @@ angular.module('angularfire2App')
 			}
 		},
 		shiftSelection: function(shift){
-			var newIndex = ( this.indexOf(this.selectedOrg) + shift ) % this.length;
+			var newIndex = ( this.indexOf(this.selectedOrg) + shift + this.length ) % this.length;
 			
 			this.selectOrg( this[newIndex] ); // TODO!!!!!!!: MAKE IT MAKE THE JUMP ACROSS ZERO! MOD ACROSS ZERO IS FAILING!
 		},
@@ -140,42 +140,42 @@ angular.module('angularfire2App')
 		// , highchartShiftSelection: function(shift){}
 	}
 
-    this.getOrgs = function(saveToScopeOrgsThenInit){
-    	
-    	// console.log($firebaseArray); // yup
-    	var query = Ref.child('organizations').limitToLast(100);
+	this.getOrgs = function(saveToScopeOrgsThenInit){
+		
+		// console.log($firebaseArray); // yup
+		var query = Ref.child('organizations').limitToLast(100);
 
-    	//https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-loaded
+		//https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray-loaded
 		var orgs = $firebaseArray(query);
 		orgs.$loaded()
 		  .then(function(loadedOrgs) {
-		    if (loadedOrgs === orgs ){
+			if (loadedOrgs === orgs ){
 				for (var funcName in orgsFuncs){
 					orgs[funcName] = orgsFuncs[funcName].bind(orgs);
-				}		    	
-		    	// angular.extend(orgs,OrgsCollectionFuncs); // "this", I believe, was pointing to the "var OrgsCollectionFuncs = {}" object; so not going to do the extending here.
-		    	saveToScopeOrgsThenInit(orgs);
-		    }
+				}				
+				// angular.extend(orgs,OrgsCollectionFuncs); // "this", I believe, was pointing to the "var OrgsCollectionFuncs = {}" object; so not going to do the extending here.
+				saveToScopeOrgsThenInit(orgs);
+			}
 		  })
 		  .catch(function(error) {
-		    console.log("Error:", error);
+			console.log("Error:", error);
 		  });
 		}
 
-    	// orgsFbArray.$loaded().catch(function(err) { console.error(err); });
-    	
-    	// not even sure I need that ..
-    	// 
-    	// 
+		// orgsFbArray.$loaded().catch(function(err) { console.error(err); });
+		
+		// not even sure I need that ..
+		// 
+		// 
   //   	orgsFbArray.$loaded( // $   // $loaded() 	Returns a promise which resolves after the initial records have been downloaded from our database. This is only called once and should be used with care. See Extending the Services for more ways to hook into server events. 
   //   		asOrgsCollection.bind(orgsFbArray) // if I don't mind letting my controller know about the service, I can just have the controller do the $loaded(asOrgsCollection) thing
   //   	).catch(function(err) {
-		//    console.error(err);
+		//	console.error(err);
 		// });
-    
-    this.taxonomies = [
-    	{}
-    ];
+	
+	this.taxonomies = [
+		{}
+	];
 
 
   }]);
