@@ -115,7 +115,7 @@ angular.module('angularfire2App')
 				// }
 			}
 		},
-		/// maybe this should be in gpHighcharts.controls?
+		/// maybe this should be in givingChart.controls?
 		highchartDeselectAllPoints: function(){
 			for (var i = this.series.length - 1; i >= 0; i--) {
 				for (var j = this.series[i].length - 1; j >= 0; j--) {

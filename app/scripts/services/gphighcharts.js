@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name angularfire2App.gpHighcharts
+ * @name angularfire2App.givingChart
  * @description
- * # gpHighcharts
+ * # givingChart
  * Service in the angularfire2App.
  */
 angular.module('angularfire2App')
-  .service('gpHighcharts', ['gpObjectUtils', function (gpObjectUtils) {
+  .service('givingChart', ['gpObjectUtils', function (gpObjectUtils) {
 
   	var U = gpObjectUtils;
 

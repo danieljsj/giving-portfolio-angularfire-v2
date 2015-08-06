@@ -14,7 +14,7 @@ angular.module('angularfire2App')
 
     this.FlatChart = {
 		Info: function (points, idSelector, valueSelector, nameSelector ){ // perhaps rather than just saving 3 things, this should accept a single object, throw error if it lacks the things, but be okay with extra things, like a php interface.
-			this.points = /*clone(*/points/*)*/; // NOTE: I'm not sure I need to clone this! why? because I can make the "copying" happen within gpHighcharts
+			this.points = /*clone(*/points/*)*/; // NOTE: I'm not sure I need to clone this! why? because I can make the "copying" happen within givingChart
 			this.idSelector = /*clone(*/idSelector/*)*/;
 			this.valueSelector = /*clone(*/valueSelector/*)*/;
 			this.nameSelector = /*clone(*/nameSelector/*)*/;

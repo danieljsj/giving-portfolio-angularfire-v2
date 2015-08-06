@@ -9,7 +9,7 @@
  */
 
 angular.module('angularfire2App')
-  .controller('PortfoliobasicCtrl', function ($scope, gpOrgsManager, gpChartInterfaces, gpHighcharts, budget) {
+  .controller('PortfoliobasicCtrl', function ($scope, gpOrgsManager, gpChartInterfaces, givingChart, budget) {
 
   	// note - the controller is angular and knows we are using angular, and knows how angular works.
   	// the controller knows that we are using highcharts, but except for a brief exception - ".series[0].setData(...)" (in refreshChart), does not know how highcharts works.
@@ -40,7 +40,7 @@ angular.module('angularfire2App')
 			$scope.givingChartInfo = getGivingChartInfo();
 
 			// Chart Config
-			$scope.givingChartConfig = gpHighcharts.getHcConfig(
+			$scope.givingChartConfig = givingChart.getHcConfig(
 				$scope.givingChartInfo,
 				$scope.orgs.selectOrg
 			);
@@ -69,7 +69,7 @@ angular.module('angularfire2App')
 
 		// $scope.givingChart.series[0].setData(getGivingChartInfo());
 		$scope.givingChart.series[0].setData(
-			gpHighcharts.getHcData( getGivingChartInfo() )
+			givingChart.getHcData( getGivingChartInfo() )
 		);
 
 		$scope.orgs.saveOrgsChanges(newOrgs, oldOrgs); // ... this is firing ... without me doing anything in the UI; why?

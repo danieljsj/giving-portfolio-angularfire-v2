@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: gpHighcharts', function () {
+describe('Service: givingChart', function () {
 
   // load the service's module
   beforeEach(module('angularfire2App'));
 
   // instantiate service
-  var gpHighcharts;
-  beforeEach(inject(function (_gpHighcharts_) {
-    gpHighcharts = _gpHighcharts_;
+  var givingChart;
+  beforeEach(inject(function (_givingChart_) {
+    givingChart = _givingChart_;
   }));
 
   it('should do something', function () {
-    expect(!!gpHighcharts).toBe(true);
+    expect(!!givingChart).toBe(true);
   });
 
 });

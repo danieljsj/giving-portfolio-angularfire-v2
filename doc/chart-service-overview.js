@@ -48,7 +48,7 @@ $scope.chartInfo = new gpChartInterfaces.FlatChart.Info(
 
 // Chart Config
 // - flat
-$scope.chartConfig = new gpHighcharts.GivingChart.Config(
+$scope.chartConfig = new givingChart.GivingChart.Config(
 	$scope.chartInfo,
 	$scope.orgs.selectOrg
 );
@@ -68,7 +68,7 @@ $scope.$watch('orgs', refreshChart, true);
 
 
 function refreshChart(newVal, oldVal){
-	// maybe this should be abstracted into gpHighcharts, like this?
+	// maybe this should be abstracted into givingChart, like this?
 	// function($scope){
 	$scope.givingChart.series[0].setData(
 		new gpChartInterfaces.FlatChartInfo(
@@ -88,7 +88,7 @@ function refreshChart(newVal, oldVal){
 // 	$scope.orgs, '$id', 'portion', 'categorizations.'+$scope.currentTaxonomy
 // );
 // // Chart Config Setup
-// $scope.categorizedGivingChartConfig = new gpHighcharts.CategorizedGivingChart(
+// $scope.categorizedGivingChartConfig = new givingChart.CategorizedGivingChart(
 // 	$scope.categorizedGivingChartInfo,
 // 	$scope.orgs.selectOrg
 // );
@@ -219,7 +219,7 @@ function fetchFromObject(selector, obj, ) {
 
 
 
-/ service: gpHighcharts /
+/ service: givingChart /
 
 {
 
