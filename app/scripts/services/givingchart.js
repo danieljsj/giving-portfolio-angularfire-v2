@@ -58,6 +58,7 @@ angular.module('angularfire2App')
 							// select: function(){ // was causing infinite loop, since the external selector func programmatically selects a piechart item
 							click: function(){
 								EXTERNAL_SELECT_POINT_BY_ID(this.id);
+								this.select();
 							},
 							unselect: function(){
 								// externalSelectPointById(false); 

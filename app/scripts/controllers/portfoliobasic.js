@@ -49,7 +49,9 @@ angular.module('angularfire2App')
 			$scope.givingChart = new Highcharts.Chart($scope.givingChartConfig);
 
 			$scope.orgs.addIdExternalSelectionFunc(function(orgId){
-				$scope.givingChart.get(orgId).select();
+				var point = $scope.givingChart.get(orgId)
+				console.log("point to programmatically select: ",point);
+				point.select();
 			});
 
 			// // Chart Controls

@@ -22,7 +22,7 @@ angular.module('angularfire2App')
 
 			// this.$add({portion:0, name:''}).then(this.selectOrg);
 
-			this.$add({portion:0, name:''}).then(function(ref) {
+			this.$add({portion:1, name:''}).then(function(ref) {
 			  // var id = ref.key();
 			  // console.log("added record with id: "); console.log( id );
 			  // console.log("org's index in array: "); console.log( this.$indexFor(id) );
@@ -37,8 +37,9 @@ angular.module('angularfire2App')
 			this.idExternalSelectionFuncs.push(fn);
 		},
 		selectOrg: function(orgRep){
+			if (false === orgRep) return this.selectedOrg = false;
 			var org = this.getOrg(orgRep)
-			console.log("about to select this org: ", org); // todo: debug: sometimes no org selected? oddly, it selected only when I had this console.log up???
+			console.log("time to select this org (if not null): ", org); // todo: debug: sometimes no org selected? oddly, it selected only when I had this console.log up???
 			this.selectedOrg = org;
 			// $scope.givingChart.get(org.$id).select(); // ha. duh... i can't see $scope from inside the service!
 			var sFsAOId = this.idExternalSelectionFuncs; // hot mess
@@ -129,6 +130,13 @@ angular.module('angularfire2App')
 				// }
 			}
 		},
+		removeSelectedOrg: function(){
+			// var index = this.indexOf(this.selectedOrg);
+			this.$remove(this.selectedOrg);
+			this.selectOrg(false);
+		},
+
+
 		/// maybe this should be in givingChart.controls?
 		highchartDeselectAllPoints: function(){
 			for (var i = this.series.length - 1; i >= 0; i--) {
@@ -138,6 +146,7 @@ angular.module('angularfire2App')
 			};
 		}
 		// , highchartShiftSelection: function(shift){}
+		
 	}
 
 	this.getOrgs = function(saveToScopeOrgsThenInit){
