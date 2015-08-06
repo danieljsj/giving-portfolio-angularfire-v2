@@ -55,7 +55,8 @@ angular.module('angularfire2App')
 					id: "giving-data",
 					point: {
 						events: {
-							select: function(){
+							// select: function(){ // was causing infinite loop, since the external selector func programmatically selects a piechart item
+							click: function(){
 								EXTERNAL_SELECT_POINT_BY_ID(this.id);
 							},
 							unselect: function(){
@@ -101,7 +102,7 @@ angular.module('angularfire2App')
     		// note: better to use return array.map(fn(point) ... return)
     		var hcSeriesData = this.getHcData(chartInfo);
     		
-    		return configTemplateMerge(hcSeriesData, externalSelectOrg, resize);
+    		return configTemplateMerge(hcSeriesData, externalSelectOrg, resize); // set as 'index' rather than 'selector', even though 'index' is a bit of a misnomer, it at least works, and doesn't confuse as bad... MAYBE.
     	},
     	getHcData: function(chartInfo){
     		return chartInfo.points.map(function(point){
@@ -113,6 +114,14 @@ angular.module('angularfire2App')
     			}
     		})
     	}
+    	// getHcPoint: function(pointInfo){
+    	// 	return {
+    	// 		id:
+    	// 		y:
+    	// 		name:
+    	// 	}
+    	// }
+    	
 
     }
 

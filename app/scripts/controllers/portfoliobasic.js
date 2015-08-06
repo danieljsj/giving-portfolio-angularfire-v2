@@ -48,6 +48,10 @@ angular.module('angularfire2App')
 			// Chart Setup
 			$scope.givingChart = new Highcharts.Chart($scope.givingChartConfig);
 
+			$scope.orgs.addIdExternalSelectionFunc(function(orgId){
+				$scope.givingChart.get(orgId).select();
+			});
+
 			// // Chart Controls
 			// $scope.givingChart.gpControls = new gpChartInterfaces.Controls(
 			// 	new gpHighCharts.Controls();

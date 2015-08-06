@@ -32,11 +32,19 @@ angular.module('angularfire2App')
 			}.bind(this));
 
 		},
+		addIdExternalSelectionFunc: function(fn){
+			if (! this.idExternalSelectionFuncs ) this.idExternalSelectionFuncs = [];
+			this.idExternalSelectionFuncs.push(fn);
+		},
 		selectOrg: function(orgRep){
 			var org = this.getOrg(orgRep)
 			console.log("about to select this org: ", org); // todo: debug: sometimes no org selected? oddly, it selected only when I had this console.log up???
 			this.selectedOrg = org;
-			// $scope.givingChart.series[0] ... nonono... make it a method of the highchart
+			// $scope.givingChart.get(org.$id).select(); // ha. duh... i can't see $scope from inside the service!
+			var sFsAOId = this.idExternalSelectionFuncs; // hot mess
+			for (var i = 0; i < sFsAOId.length; i++) {
+				sFsAOId[i](org.$id); 
+			};
 			this.saveOrgsChanges(this); // todo: save only the one org.
 		},
 		selectNext: function(){
