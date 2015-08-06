@@ -52,7 +52,7 @@ angular.module('angularfire2App')
 				this.selectOrg(this[0]);
 			}
 			else {
-				this.selectOrg(this[this.indexOf(this.selectedOrg)+1]);
+				this.shiftSelection(1);
 			}
 		},
 		selectPrev: function(){
@@ -60,9 +60,15 @@ angular.module('angularfire2App')
 				this.selectOrg(this[this.length-1]);
 			}
 			else {
-				this.selectOrg(this[this.indexOf(this.selectedOrg)-1]);
+				this.shiftSelection(-1);
 			}
-		},		// not in use yet:
+		},
+		shiftSelection: function(shift){
+			var newIndex = ( this.indexOf(this.selectedOrg) + shift ) % this.length;
+			
+			this.selectOrg( this[newIndex] ); // TODO!!!!!!!: MAKE IT MAKE THE JUMP ACROSS ZERO! MOD ACROSS ZERO IS FAILING!
+		},
+		// not in use yet:
 		// getSelectedOrgIndex: function(){
 		// 	return this.$indexFor(this.selectedOrg.$id);
 		// }
